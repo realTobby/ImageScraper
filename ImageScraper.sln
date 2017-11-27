@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4chanDumper", "4chanDumper\4chanDumper.csproj", "{A85C5DF6-1934-419A-AE68-44FE1593B8F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageScraper", "ImageScraper\ImageScraper.csproj", "{A85C5DF6-1934-419A-AE68-44FE1593B8F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
