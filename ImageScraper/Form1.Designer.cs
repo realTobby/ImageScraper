@@ -1,4 +1,4 @@
-﻿namespace _4chanDumper
+﻿namespace _ImageScraper
 {
     partial class MainFormImageScraper
     {
@@ -46,7 +46,7 @@
             this.button_preview_clear = new System.Windows.Forms.Button();
             this.textBox_filter = new System.Windows.Forms.TextBox();
             this.button_addFilter = new System.Windows.Forms.Button();
-            this.button_showDump = new System.Windows.Forms.Button();
+            this.label_progress = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_preview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,7 +72,7 @@
             // 
             // textBox_url
             // 
-            this.textBox_url.Location = new System.Drawing.Point(12, 76);
+            this.textBox_url.Location = new System.Drawing.Point(12, 53);
             this.textBox_url.Name = "textBox_url";
             this.textBox_url.Size = new System.Drawing.Size(401, 20);
             this.textBox_url.TabIndex = 2;
@@ -120,7 +120,7 @@
             // 
             this.check_openDirectory.AutoSize = true;
             this.check_openDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.check_openDirectory.Location = new System.Drawing.Point(12, 102);
+            this.check_openDirectory.Location = new System.Drawing.Point(12, 79);
             this.check_openDirectory.Name = "check_openDirectory";
             this.check_openDirectory.Size = new System.Drawing.Size(152, 17);
             this.check_openDirectory.TabIndex = 8;
@@ -129,9 +129,9 @@
             // 
             // pictureBox_preview
             // 
-            this.pictureBox_preview.Location = new System.Drawing.Point(422, 7);
+            this.pictureBox_preview.Location = new System.Drawing.Point(422, 21);
             this.pictureBox_preview.Name = "pictureBox_preview";
-            this.pictureBox_preview.Size = new System.Drawing.Size(224, 146);
+            this.pictureBox_preview.Size = new System.Drawing.Size(224, 137);
             this.pictureBox_preview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_preview.TabIndex = 11;
             this.pictureBox_preview.TabStop = false;
@@ -207,36 +207,36 @@
             // 
             // textBox_filter
             // 
-            this.textBox_filter.Location = new System.Drawing.Point(12, 50);
+            this.textBox_filter.Location = new System.Drawing.Point(246, 82);
             this.textBox_filter.Name = "textBox_filter";
             this.textBox_filter.Size = new System.Drawing.Size(89, 20);
             this.textBox_filter.TabIndex = 19;
             // 
             // button_addFilter
             // 
-            this.button_addFilter.Location = new System.Drawing.Point(107, 48);
+            this.button_addFilter.Location = new System.Drawing.Point(338, 79);
             this.button_addFilter.Name = "button_addFilter";
             this.button_addFilter.Size = new System.Drawing.Size(75, 23);
             this.button_addFilter.TabIndex = 20;
             this.button_addFilter.Text = "Add Filter";
             this.button_addFilter.UseVisualStyleBackColor = true;
+            this.button_addFilter.Click += new System.EventHandler(this.button_addFilter_Click);
             // 
-            // button_showDump
+            // label_progress
             // 
-            this.button_showDump.Location = new System.Drawing.Point(12, 130);
-            this.button_showDump.Name = "button_showDump";
-            this.button_showDump.Size = new System.Drawing.Size(136, 23);
-            this.button_showDump.TabIndex = 21;
-            this.button_showDump.Text = "Show Website Elements";
-            this.button_showDump.UseVisualStyleBackColor = true;
-            this.button_showDump.Click += new System.EventHandler(this.button1_Click_1);
+            this.label_progress.AutoSize = true;
+            this.label_progress.Location = new System.Drawing.Point(188, 164);
+            this.label_progress.Name = "label_progress";
+            this.label_progress.Size = new System.Drawing.Size(24, 13);
+            this.label_progress.TabIndex = 21;
+            this.label_progress.Text = "0/0";
             // 
             // MainFormImageScraper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(652, 437);
-            this.Controls.Add(this.button_showDump);
+            this.Controls.Add(this.label_progress);
             this.Controls.Add(this.button_addFilter);
             this.Controls.Add(this.textBox_filter);
             this.Controls.Add(this.button_preview_clear);
@@ -285,7 +285,7 @@
         private System.Windows.Forms.Button button_preview_clear;
         private System.Windows.Forms.TextBox textBox_filter;
         private System.Windows.Forms.Button button_addFilter;
-        private System.Windows.Forms.Button button_showDump;
+        private System.Windows.Forms.Label label_progress;
     }
 }
 

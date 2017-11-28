@@ -11,17 +11,15 @@ using System.Net;
 using System.IO;
 using System.Diagnostics;
 using System.IO.Compression;
+using _ImageScraper;
 
-namespace _4chanDumper
+namespace _ImageScraper
 {
     public partial class MainFormImageScraper : Form
     {
-        public List<string> urlList = new List<string>();
-        public List<Image> dumpedList = new List<Image>();
         public int currentShow = 0;
         public int maxShow = 0;
         public Random rnd = new Random();
-        public string currentDumpedCode = "No code dumped yet.";
 
         public MainFormImageScraper()
         {
@@ -30,56 +28,9 @@ namespace _4chanDumper
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ImageScrape.LoadFilter();
         }
-
-        public List<string> DumpImageFormat(string format, string dumpedCode)
-        {
-            List<string> imageurls = new List<string>();
-            while (dumpedCode.Contains(format))
-            {
-                int indx = dumpedCode.IndexOf(format);
-                string firstMarker = "";
-                for (int i = 0; i < format.Length; i++)
-                {
-                    firstMarker = firstMarker + dumpedCode[indx + i].ToString();
-                }
-                string imagelink = "";
-                for (int i = indx - 1; i > 0; i--)
-                {
-                    if (dumpedCode[i] != '"')
-                        imagelink = dumpedCode[i] + imagelink;
-                    else
-                        i = 0;
-                }
-                if (imagelink != "")
-                {
-                    if (imagelink[0] != 'h' && imagelink[1] != 't' && imagelink[2] != 't' && imagelink[3] != 'p')
-                    {
-                        imagelink = textBox_url.Text + imagelink;
-                    }
-                }
-                imageurls.Add(imagelink + firstMarker);
-                dumpedCode = dumpedCode.Remove(0, indx + 3);
-            }
-            return imageurls;
-        }
-
-        public void GetImageFromURL(string url)
-        {
-            try
-            {
-                WebRequest req = WebRequest.Create(url);
-                WebResponse resp = req.GetResponse();
-                Bitmap img = new Bitmap(resp.GetResponseStream());
-                dumpedList.Add(img);
-                pictureBox_preview.Image = img;
-                pictureBox_preview.Update();
-            }
-            catch(Exception)
-            {
-
-            }
-         }
+        
 
         void DumpNLogEverything(List<List<string>> imageLists)
         {
@@ -95,83 +46,58 @@ namespace _4chanDumper
                 {
                     textBox_log.Text = textBox_log.Text + Environment.NewLine + listItem;
                     textBox_log.Update();
-                    GetImageFromURL(listItem);
+                    Bitmap tmp = ImageScrape.GetImageFromURL(listItem);
+                    ImageScrape.DumpedList.Add(tmp);
+                    pictureBox_preview.Image = tmp;
+                    pictureBox_preview.Update();
                     progessBar_dump.Value = progessBar_dump.Value + 1;
                     progessBar_dump.Update();
+                    label_progress.Text = progessBar_dump.Value + "/" + GetMaxCount(imageLists);
+                    label_progress.Update();
                 }
             }
         }
 
+        int GetMaxCount(List<List<string>> list)
+        {
+            int count = 0;
+            foreach(var item in list)
+            {
+                foreach(var itemlist in item)
+                {
+                    count = count + 1;
+                }
+            }
+            return count;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             progessBar_dump.Value = 0;
-            dumpedList = new List<Image>();
-            string txtUrl = textBox_url.Text;
-            if(txtUrl[4] == 's')
-            {
-                txtUrl = txtUrl.Remove(4,1);
-            }
-            if(txtUrl[txtUrl.Length-1] == '/')
-            {
-                txtUrl = txtUrl.Remove(txtUrl.Length - 1);
-            }
-            textBox_url.Text = txtUrl;
-
-
-
+            string webUrl = ImageScrape.PrepareUrl(textBox_url.Text);
             textBox_log.Text = "";
-            string dumpedCode = DumpHTML(textBox_url.Text);
-            currentDumpedCode = dumpedCode;
+            string dumpedCode = ImageScrape.DumpHTML(webUrl);
             System.IO.File.WriteAllText("dumpedCode.txt", dumpedCode);
             System.IO.Directory.CreateDirectory("dumpedImages");
 
-            List<string> dumpedPngs = DumpImageFormat(".png", dumpedCode);
-            List<string> dumpedJpgs = DumpImageFormat(".jpg", dumpedCode);
-            List<string> dumpedGifs = DumpImageFormat(".gif", dumpedCode);
 
-            List<List<string>> dumpingList = new List<List<string>>();
-            dumpingList.Add(dumpedPngs);
-            dumpingList.Add(dumpedJpgs);
-            dumpingList.Add(dumpedGifs);
+            List<List<string>> dumpingList = ImageScrape.GetAllImageLinks();
+
+            label_progress.Text = "0/" + GetMaxCount(dumpingList);
+
 
             DumpNLogEverything(dumpingList);
 
-            if(check_openDirectory.Checked == true)
+            if (check_openDirectory.Checked == true)
                 Process.Start("dumpedImages");
-            pictureBox_preview.Image = dumpedList[0];
-            
-            maxShow = dumpedList.Count;
 
+            pictureBox_preview.Image = ImageScrape.DumpedList[0];
+
+            maxShow = ImageScrape.DumpedList.Count;
 
         }
 
-        public string DumpHTML(string url)
-        {
-            string urlAddress = url;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlAddress);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            string code = "";
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                Stream receiveStream = response.GetResponseStream();
-                StreamReader readStream = null;
 
-                if (response.CharacterSet == null)
-                {
-                    readStream = new StreamReader(receiveStream);
-                }
-                else
-                {
-                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
-                }
-
-                code = readStream.ReadToEnd();
-                response.Close();
-                readStream.Close();
-            }
-            return code;
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -212,43 +138,35 @@ namespace _4chanDumper
 
         private void button5_Click(object sender, EventArgs e)
         {
-            try
+            if (ImageScrape.DumpedList.Count > 0)
             {
                 currentShow = currentShow - 1;
                 if (currentShow < 0)
-                    currentShow = dumpedList.Count - 1;
-                if (currentShow > dumpedList.Count)
+                    currentShow = ImageScrape.DumpedList.Count - 1;
+                if (currentShow > ImageScrape.DumpedList.Count)
                     currentShow = 0;
 
-                pictureBox_preview.Image = dumpedList[currentShow];
-            }
-            catch (Exception ex)
-            {
-
+                pictureBox_preview.Image = ImageScrape.DumpedList[currentShow];
             }
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            try
+            if (ImageScrape.DumpedList.Count > 0)
             {
                 currentShow = currentShow + 1;
                 if (currentShow < 0)
-                    currentShow = dumpedList.Count - 1;
-                if (currentShow > dumpedList.Count)
-                    currentShow = 0;
+                    currentShow = ImageScrape.DumpedList.Count - 1;
+                if (currentShow > ImageScrape.DumpedList.Count)
+                    currentShow = 1;
 
-                pictureBox_preview.Image = dumpedList[currentShow];
-            }catch(Exception ex)
-            {
-
+                pictureBox_preview.Image = ImageScrape.DumpedList[currentShow - 1];
             }
-            
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            foreach(var item in dumpedList)
+            foreach(var item in ImageScrape.DumpedList)
             {
                 item.Save("dumpedImages/" + System.IO.Directory.GetFiles("dumpedImages").Length + ".png");
             }
@@ -256,37 +174,36 @@ namespace _4chanDumper
 
         private void button8_Click(object sender, EventArgs e)
         {
-            try {
+            if(pictureBox_preview.Image != null)
                 pictureBox_preview.Image.Save("dumpedImages/" + System.IO.Directory.GetFiles("dumpedImages").Length + ".png");
-            }catch(Exception ex)
-            {
-                // lmao dont be stoopid
-            }
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
             pictureBox_preview.Image = null;
-            dumpedList = new List<Image>();
+            ImageScrape.ResetDumpedList();
 
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            try
+            if (ImageScrape.DumpedList.Count > 0)
             {
-                int tmp = rnd.Next(0, dumpedList.Count - 1);
-
-                pictureBox_preview.Image = dumpedList[tmp];
-            }catch(Exception ex)
-            {
-                // lmao dont be stoopid
+                int tmp = rnd.Next(0, ImageScrape.DumpedList.Count - 1);
+                pictureBox_preview.Image = ImageScrape.DumpedList[tmp];
             }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show(currentDumpedCode);
+            MessageBox.Show(ImageScrape.DumpedCode);
+        }
+
+        private void button_addFilter_Click(object sender, EventArgs e)
+        {
+            ImageScrape.FilterList.Add(textBox_filter.Text);
+            ImageScrape.SaveFilter();
+            textBox_filter.Text = "";
         }
     }
 }
