@@ -52,7 +52,7 @@
             // 
             // button_startDump
             // 
-            this.button_startDump.Location = new System.Drawing.Point(12, 7);
+            this.button_startDump.Location = new System.Drawing.Point(12, 38);
             this.button_startDump.Name = "button_startDump";
             this.button_startDump.Size = new System.Drawing.Size(73, 23);
             this.button_startDump.TabIndex = 0;
@@ -63,16 +63,16 @@
             // textBox_log
             // 
             this.textBox_log.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_log.Location = new System.Drawing.Point(12, 188);
+            this.textBox_log.Location = new System.Drawing.Point(6, 148);
             this.textBox_log.Multiline = true;
             this.textBox_log.Name = "textBox_log";
             this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_log.Size = new System.Drawing.Size(634, 240);
+            this.textBox_log.Size = new System.Drawing.Size(410, 112);
             this.textBox_log.TabIndex = 1;
             // 
             // textBox_url
             // 
-            this.textBox_url.Location = new System.Drawing.Point(12, 53);
+            this.textBox_url.Location = new System.Drawing.Point(12, 12);
             this.textBox_url.Name = "textBox_url";
             this.textBox_url.Size = new System.Drawing.Size(401, 20);
             this.textBox_url.TabIndex = 2;
@@ -80,7 +80,7 @@
             // 
             // button_clearDump
             // 
-            this.button_clearDump.Location = new System.Drawing.Point(245, 7);
+            this.button_clearDump.Location = new System.Drawing.Point(163, 96);
             this.button_clearDump.Name = "button_clearDump";
             this.button_clearDump.Size = new System.Drawing.Size(90, 23);
             this.button_clearDump.TabIndex = 3;
@@ -91,14 +91,14 @@
             // 
             // progessBar_dump
             // 
-            this.progessBar_dump.Location = new System.Drawing.Point(12, 159);
+            this.progessBar_dump.Location = new System.Drawing.Point(12, 67);
             this.progessBar_dump.Name = "progessBar_dump";
-            this.progessBar_dump.Size = new System.Drawing.Size(404, 23);
+            this.progessBar_dump.Size = new System.Drawing.Size(401, 23);
             this.progessBar_dump.TabIndex = 4;
             // 
             // button_archiveDump
             // 
-            this.button_archiveDump.Location = new System.Drawing.Point(154, 7);
+            this.button_archiveDump.Location = new System.Drawing.Point(75, 96);
             this.button_archiveDump.Name = "button_archiveDump";
             this.button_archiveDump.Size = new System.Drawing.Size(85, 23);
             this.button_archiveDump.TabIndex = 5;
@@ -108,7 +108,7 @@
             // 
             // button_openDump
             // 
-            this.button_openDump.Location = new System.Drawing.Point(341, 7);
+            this.button_openDump.Location = new System.Drawing.Point(259, 96);
             this.button_openDump.Name = "button_openDump";
             this.button_openDump.Size = new System.Drawing.Size(75, 23);
             this.button_openDump.TabIndex = 6;
@@ -120,7 +120,7 @@
             // 
             this.check_openDirectory.AutoSize = true;
             this.check_openDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.check_openDirectory.Location = new System.Drawing.Point(12, 79);
+            this.check_openDirectory.Location = new System.Drawing.Point(12, 125);
             this.check_openDirectory.Name = "check_openDirectory";
             this.check_openDirectory.Size = new System.Drawing.Size(152, 17);
             this.check_openDirectory.TabIndex = 8;
@@ -129,7 +129,7 @@
             // 
             // pictureBox_preview
             // 
-            this.pictureBox_preview.Location = new System.Drawing.Point(422, 21);
+            this.pictureBox_preview.Location = new System.Drawing.Point(91, 266);
             this.pictureBox_preview.Name = "pictureBox_preview";
             this.pictureBox_preview.Size = new System.Drawing.Size(224, 137);
             this.pictureBox_preview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -138,7 +138,7 @@
             // 
             // button_preview_left
             // 
-            this.button_preview_left.Location = new System.Drawing.Point(422, 159);
+            this.button_preview_left.Location = new System.Drawing.Point(91, 404);
             this.button_preview_left.Name = "button_preview_left";
             this.button_preview_left.Size = new System.Drawing.Size(28, 23);
             this.button_preview_left.TabIndex = 12;
@@ -148,7 +148,7 @@
             // 
             // button_preview_right
             // 
-            this.button_preview_right.Location = new System.Drawing.Point(616, 159);
+            this.button_preview_right.Location = new System.Drawing.Point(285, 404);
             this.button_preview_right.Name = "button_preview_right";
             this.button_preview_right.Size = new System.Drawing.Size(31, 23);
             this.button_preview_right.TabIndex = 13;
@@ -159,7 +159,7 @@
             // label_preview
             // 
             this.label_preview.AutoSize = true;
-            this.label_preview.Location = new System.Drawing.Point(422, 5);
+            this.label_preview.Location = new System.Drawing.Point(58, 266);
             this.label_preview.Name = "label_preview";
             this.label_preview.Size = new System.Drawing.Size(91, 13);
             this.label_preview.TabIndex = 14;
@@ -167,7 +167,7 @@
             // 
             // button_saveDump
             // 
-            this.button_saveDump.Location = new System.Drawing.Point(91, 7);
+            this.button_saveDump.Location = new System.Drawing.Point(12, 96);
             this.button_saveDump.Name = "button_saveDump";
             this.button_saveDump.Size = new System.Drawing.Size(57, 23);
             this.button_saveDump.TabIndex = 15;
@@ -177,7 +177,7 @@
             // 
             // button_preview_save
             // 
-            this.button_preview_save.Location = new System.Drawing.Point(567, 159);
+            this.button_preview_save.Location = new System.Drawing.Point(236, 404);
             this.button_preview_save.Name = "button_preview_save";
             this.button_preview_save.Size = new System.Drawing.Size(43, 23);
             this.button_preview_save.TabIndex = 16;
@@ -187,7 +187,7 @@
             // 
             // button_preview_random
             // 
-            this.button_preview_random.Location = new System.Drawing.Point(502, 159);
+            this.button_preview_random.Location = new System.Drawing.Point(171, 404);
             this.button_preview_random.Name = "button_preview_random";
             this.button_preview_random.Size = new System.Drawing.Size(59, 23);
             this.button_preview_random.TabIndex = 17;
@@ -197,7 +197,7 @@
             // 
             // button_preview_clear
             // 
-            this.button_preview_clear.Location = new System.Drawing.Point(456, 159);
+            this.button_preview_clear.Location = new System.Drawing.Point(125, 404);
             this.button_preview_clear.Name = "button_preview_clear";
             this.button_preview_clear.Size = new System.Drawing.Size(40, 23);
             this.button_preview_clear.TabIndex = 18;
@@ -207,14 +207,14 @@
             // 
             // textBox_filter
             // 
-            this.textBox_filter.Location = new System.Drawing.Point(246, 82);
+            this.textBox_filter.Location = new System.Drawing.Point(91, 41);
             this.textBox_filter.Name = "textBox_filter";
             this.textBox_filter.Size = new System.Drawing.Size(89, 20);
             this.textBox_filter.TabIndex = 19;
             // 
             // button_addFilter
             // 
-            this.button_addFilter.Location = new System.Drawing.Point(338, 79);
+            this.button_addFilter.Location = new System.Drawing.Point(186, 39);
             this.button_addFilter.Name = "button_addFilter";
             this.button_addFilter.Size = new System.Drawing.Size(75, 23);
             this.button_addFilter.TabIndex = 20;
@@ -225,7 +225,7 @@
             // label_progress
             // 
             this.label_progress.AutoSize = true;
-            this.label_progress.Location = new System.Drawing.Point(188, 164);
+            this.label_progress.Location = new System.Drawing.Point(183, 72);
             this.label_progress.Name = "label_progress";
             this.label_progress.Size = new System.Drawing.Size(24, 13);
             this.label_progress.TabIndex = 21;
@@ -235,7 +235,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 437);
+            this.ClientSize = new System.Drawing.Size(425, 437);
             this.Controls.Add(this.label_progress);
             this.Controls.Add(this.button_addFilter);
             this.Controls.Add(this.textBox_filter);

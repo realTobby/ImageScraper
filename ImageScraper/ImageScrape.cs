@@ -53,7 +53,7 @@ namespace _ImageScraper
 
         public static List<List<string>> GetAllImageLinks()
         {
-
+            Console.WriteLine("Called function GetAllImageLinks()");
             List<string> tmpList = new List<string>();
             List<List<string>> result = new List<List<string>>();
             foreach(var item in filterList)
@@ -67,6 +67,7 @@ namespace _ImageScraper
 
         public static string DumpHTML(string url)
         {
+            Console.WriteLine("Called function DumpHTML()");
             try
             {
                 string urlAddress = url;
@@ -102,6 +103,7 @@ namespace _ImageScraper
 
         public static string PrepareUrl(string enteredUrl)
         {
+            Console.WriteLine("Called function PrepareUrl()");
             string txtUrl = enteredUrl;
             if (txtUrl[4] == 's')
             {
@@ -117,6 +119,7 @@ namespace _ImageScraper
 
         public static List<string> DumpImageFormat(string format, string dumpedCode)
         {
+            Console.WriteLine("Called function DumpImageFormat(" + format + ", dumpedCode)");
             List<string> imageurls = new List<string>();
             while (dumpedCode.Contains(format))
             {
@@ -149,6 +152,7 @@ namespace _ImageScraper
 
         static bool IsValidUri(String uri)
         {
+            Console.WriteLine("Called function IsValidUri()");
             try
             {
                 new Uri(uri);
@@ -161,10 +165,12 @@ namespace _ImageScraper
         }
         public static void ResetDumpedList()
         {
+            Console.WriteLine("Called function ResetDumpedList()");
             dumpedList = new List<Image>();
         }
         public static Bitmap GetImageFromURL(string url)
         {
+            Console.WriteLine("Called function GetImageFromUrl(" + url + ")");
             Bitmap img = new Bitmap(1, 1);
             if (IsValidUri(url))
             {
@@ -185,7 +191,7 @@ namespace _ImageScraper
 
         public static void SaveFilter()
         {
-            
+            Console.WriteLine("Called function SaveFilter()");
             // prepare string before saving
             string stuffToSave = "";
             foreach(var item in filterList)
@@ -196,6 +202,7 @@ namespace _ImageScraper
         }
         public static void LoadFilter()
         {
+            Console.WriteLine("Called function LoadFilter()");
             if (System.IO.File.Exists("filter.txt"))
             {
                 var tmp = System.IO.File.ReadAllLines("filter.txt");

@@ -73,27 +73,38 @@ namespace _ImageScraper
 
         private void button1_Click(object sender, EventArgs e)
         {
-            progessBar_dump.Value = 0;
-            string webUrl = ImageScrape.PrepareUrl(textBox_url.Text);
-            textBox_log.Text = "";
-            string dumpedCode = ImageScrape.DumpHTML(webUrl);
-            System.IO.File.WriteAllText("dumpedCode.txt", dumpedCode);
-            System.IO.Directory.CreateDirectory("dumpedImages");
+            ImageScrape.LoadFilter();
+            if(ImageScrape.FilterList.Count <= 0)
+            {
+                MessageBox.Show("You need to add an filter first! (ex: .png, .bmp, .gif)");
+            }
+            else
+            {
+                progessBar_dump.Value = 0;
+                string webUrl = ImageScrape.PrepareUrl(textBox_url.Text);
+                textBox_log.Text = "";
+                string dumpedCode = ImageScrape.DumpHTML(webUrl);
+                System.IO.File.WriteAllText("dumpedCode.txt", dumpedCode);
+                System.IO.Directory.CreateDirectory("dumpedImages");
 
 
-            List<List<string>> dumpingList = ImageScrape.GetAllImageLinks();
+                List<List<string>> dumpingList = ImageScrape.GetAllImageLinks();
 
-            label_progress.Text = "0/" + GetMaxCount(dumpingList);
+                label_progress.Text = "0/" + GetMaxCount(dumpingList);
 
 
-            DumpNLogEverything(dumpingList);
+                DumpNLogEverything(dumpingList);
 
-            if (check_openDirectory.Checked == true)
-                Process.Start("dumpedImages");
+                if (check_openDirectory.Checked == true)
+                    Process.Start("dumpedImages");
 
-            pictureBox_preview.Image = ImageScrape.DumpedList[0];
+                pictureBox_preview.Image = ImageScrape.DumpedList[0];
 
-            maxShow = ImageScrape.DumpedList.Count;
+                maxShow = ImageScrape.DumpedList.Count;
+            }
+
+
+            
 
         }
 
