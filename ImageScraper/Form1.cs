@@ -284,7 +284,12 @@ namespace _4chanDumper
 
         private void button8_Click(object sender, EventArgs e)
         {
-            pictureBox1.Image.Save("dumpedImages/" + System.IO.Directory.GetFiles("dumpedImages").Length + ".png");
+            try {
+                pictureBox1.Image.Save("dumpedImages/" + System.IO.Directory.GetFiles("dumpedImages").Length + ".png");
+            }catch(Exception ex)
+            {
+                // lmao dont be stoopid
+            }
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -296,10 +301,15 @@ namespace _4chanDumper
 
         private void button9_Click(object sender, EventArgs e)
         {
-            int tmp = rnd.Next(0,dumpedList.Count-1);
+            try
+            {
+                int tmp = rnd.Next(0, dumpedList.Count - 1);
 
-            pictureBox1.Image = dumpedList[tmp];
-
+                pictureBox1.Image = dumpedList[tmp];
+            }catch(Exception ex)
+            {
+                // lmao dont be stoopid
+            }
         }
     }
 }
