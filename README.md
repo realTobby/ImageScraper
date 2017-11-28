@@ -1,16 +1,12 @@
 # ImageScraper
-*What?
-This tool scrapes all images on a website.
-You just need to specify what extensions (formats) you want
-the tool to look for.
-(For example: .jpg or .png)
+![Screenshot](https://github.com/xSillusx/ImageScraper/blob/master/ImageScraper/ext/Screenshots/screen1.PNG)
 
-*How?
-Specifiy a website
-Add filters (extensions)
-Hit "dump"
-Wait for the process to end
-Look trough what the tool found and save single images.
-Or save the whole dump.
+The ImageScraper looks trough a WebSite and returns all specified image formats.
+
+
+![Screenshot](https://github.com/xSillusx/ImageScraper/blob/master/ImageScraper/ext/Screenshots/screen2.PNG)
+
+The filter for the image formats is stored in a simple filter.txt in the root of the tool.
+
 
 
