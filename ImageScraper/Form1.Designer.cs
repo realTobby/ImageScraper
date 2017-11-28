@@ -1,6 +1,6 @@
 ﻿namespace _4chanDumper
 {
-    partial class Form1
+    partial class MainFormImageScraper
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -28,230 +28,230 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txt_url = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.check_open = new System.Windows.Forms.CheckBox();
-            this.check_png = new System.Windows.Forms.CheckBox();
-            this.check_jpg = new System.Windows.Forms.CheckBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.button_startDump = new System.Windows.Forms.Button();
+            this.textBox_log = new System.Windows.Forms.TextBox();
+            this.textBox_url = new System.Windows.Forms.TextBox();
+            this.button_clearDump = new System.Windows.Forms.Button();
+            this.progessBar_dump = new System.Windows.Forms.ProgressBar();
+            this.button_archiveDump = new System.Windows.Forms.Button();
+            this.button_openDump = new System.Windows.Forms.Button();
+            this.check_openDirectory = new System.Windows.Forms.CheckBox();
+            this.check_FilterPNG = new System.Windows.Forms.CheckBox();
+            this.check_FitlerJPG = new System.Windows.Forms.CheckBox();
+            this.pictureBox_preview = new System.Windows.Forms.PictureBox();
+            this.button_preview_left = new System.Windows.Forms.Button();
+            this.button_preview_right = new System.Windows.Forms.Button();
+            this.label_preview = new System.Windows.Forms.Label();
+            this.button_saveDump = new System.Windows.Forms.Button();
+            this.button_preview_save = new System.Windows.Forms.Button();
+            this.button_preview_random = new System.Windows.Forms.Button();
+            this.button_preview_clear = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_preview)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // button_startDump
             // 
-            this.button1.Location = new System.Drawing.Point(12, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(73, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Dump";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_startDump.Location = new System.Drawing.Point(12, 7);
+            this.button_startDump.Name = "button_startDump";
+            this.button_startDump.Size = new System.Drawing.Size(73, 23);
+            this.button_startDump.TabIndex = 0;
+            this.button_startDump.Text = "Dump";
+            this.button_startDump.UseVisualStyleBackColor = true;
+            this.button_startDump.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // textBox_log
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(12, 88);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(304, 240);
-            this.textBox1.TabIndex = 1;
+            this.textBox_log.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_log.Location = new System.Drawing.Point(12, 88);
+            this.textBox_log.Multiline = true;
+            this.textBox_log.Name = "textBox_log";
+            this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox_log.Size = new System.Drawing.Size(304, 240);
+            this.textBox_log.TabIndex = 1;
             // 
-            // txt_url
+            // textBox_url
             // 
-            this.txt_url.Location = new System.Drawing.Point(12, 36);
-            this.txt_url.Name = "txt_url";
-            this.txt_url.Size = new System.Drawing.Size(546, 20);
-            this.txt_url.TabIndex = 2;
-            this.txt_url.Text = "(url here)";
+            this.textBox_url.Location = new System.Drawing.Point(12, 36);
+            this.textBox_url.Name = "textBox_url";
+            this.textBox_url.Size = new System.Drawing.Size(546, 20);
+            this.textBox_url.TabIndex = 2;
+            this.textBox_url.Text = "(url here)";
             // 
-            // button2
+            // button_clearDump
             // 
-            this.button2.Location = new System.Drawing.Point(468, 7);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Clear Dump";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            this.button2.Enter += new System.EventHandler(this.button2_Enter);
+            this.button_clearDump.Location = new System.Drawing.Point(468, 7);
+            this.button_clearDump.Name = "button_clearDump";
+            this.button_clearDump.Size = new System.Drawing.Size(90, 23);
+            this.button_clearDump.TabIndex = 3;
+            this.button_clearDump.Text = "Clear Dump";
+            this.button_clearDump.UseVisualStyleBackColor = true;
+            this.button_clearDump.Click += new System.EventHandler(this.button2_Click);
+            this.button_clearDump.Enter += new System.EventHandler(this.button2_Enter);
             // 
-            // progressBar1
+            // progessBar_dump
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 59);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(627, 23);
-            this.progressBar1.TabIndex = 4;
+            this.progessBar_dump.Location = new System.Drawing.Point(12, 59);
+            this.progessBar_dump.Name = "progessBar_dump";
+            this.progessBar_dump.Size = new System.Drawing.Size(627, 23);
+            this.progessBar_dump.TabIndex = 4;
             // 
-            // button3
+            // button_archiveDump
             // 
-            this.button3.Location = new System.Drawing.Point(377, 7);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(85, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Archive Dump";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button_archiveDump.Location = new System.Drawing.Point(377, 7);
+            this.button_archiveDump.Name = "button_archiveDump";
+            this.button_archiveDump.Size = new System.Drawing.Size(85, 23);
+            this.button_archiveDump.TabIndex = 5;
+            this.button_archiveDump.Text = "Archive Dump";
+            this.button_archiveDump.UseVisualStyleBackColor = true;
+            this.button_archiveDump.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // button_openDump
             // 
-            this.button4.Location = new System.Drawing.Point(564, 7);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Open Dump";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button_openDump.Location = new System.Drawing.Point(564, 7);
+            this.button_openDump.Name = "button_openDump";
+            this.button_openDump.Size = new System.Drawing.Size(75, 23);
+            this.button_openDump.TabIndex = 6;
+            this.button_openDump.Text = "Open Dump";
+            this.button_openDump.UseVisualStyleBackColor = true;
+            this.button_openDump.Click += new System.EventHandler(this.button4_Click);
             // 
-            // check_open
+            // check_openDirectory
             // 
-            this.check_open.AutoSize = true;
-            this.check_open.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.check_open.Location = new System.Drawing.Point(107, 10);
-            this.check_open.Name = "check_open";
-            this.check_open.Size = new System.Drawing.Size(152, 17);
-            this.check_open.TabIndex = 8;
-            this.check_open.Text = "Open Directory after Dump";
-            this.check_open.UseVisualStyleBackColor = true;
+            this.check_openDirectory.AutoSize = true;
+            this.check_openDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.check_openDirectory.Location = new System.Drawing.Point(107, 10);
+            this.check_openDirectory.Name = "check_openDirectory";
+            this.check_openDirectory.Size = new System.Drawing.Size(152, 17);
+            this.check_openDirectory.TabIndex = 8;
+            this.check_openDirectory.Text = "Open Directory after Dump";
+            this.check_openDirectory.UseVisualStyleBackColor = true;
             // 
-            // check_png
+            // check_FilterPNG
             // 
-            this.check_png.AutoSize = true;
-            this.check_png.Location = new System.Drawing.Point(266, 11);
-            this.check_png.Name = "check_png";
-            this.check_png.Size = new System.Drawing.Size(49, 17);
-            this.check_png.TabIndex = 9;
-            this.check_png.Text = "PNG";
-            this.check_png.UseVisualStyleBackColor = true;
+            this.check_FilterPNG.AutoSize = true;
+            this.check_FilterPNG.Location = new System.Drawing.Point(266, 11);
+            this.check_FilterPNG.Name = "check_FilterPNG";
+            this.check_FilterPNG.Size = new System.Drawing.Size(49, 17);
+            this.check_FilterPNG.TabIndex = 9;
+            this.check_FilterPNG.Text = "PNG";
+            this.check_FilterPNG.UseVisualStyleBackColor = true;
             // 
-            // check_jpg
+            // check_FitlerJPG
             // 
-            this.check_jpg.AutoSize = true;
-            this.check_jpg.Location = new System.Drawing.Point(322, 10);
-            this.check_jpg.Name = "check_jpg";
-            this.check_jpg.Size = new System.Drawing.Size(46, 17);
-            this.check_jpg.TabIndex = 10;
-            this.check_jpg.Text = "JPG";
-            this.check_jpg.UseVisualStyleBackColor = true;
+            this.check_FitlerJPG.AutoSize = true;
+            this.check_FitlerJPG.Location = new System.Drawing.Point(322, 10);
+            this.check_FitlerJPG.Name = "check_FitlerJPG";
+            this.check_FitlerJPG.Size = new System.Drawing.Size(46, 17);
+            this.check_FitlerJPG.TabIndex = 10;
+            this.check_FitlerJPG.Text = "JPG";
+            this.check_FitlerJPG.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // pictureBox_preview
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(325, 117);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(318, 220);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox_preview.Location = new System.Drawing.Point(325, 117);
+            this.pictureBox_preview.Name = "pictureBox_preview";
+            this.pictureBox_preview.Size = new System.Drawing.Size(318, 220);
+            this.pictureBox_preview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_preview.TabIndex = 11;
+            this.pictureBox_preview.TabStop = false;
             // 
-            // button5
+            // button_preview_left
             // 
-            this.button5.Location = new System.Drawing.Point(418, 88);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(28, 23);
-            this.button5.TabIndex = 12;
-            this.button5.Text = "<-";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button_preview_left.Location = new System.Drawing.Point(418, 88);
+            this.button_preview_left.Name = "button_preview_left";
+            this.button_preview_left.Size = new System.Drawing.Size(28, 23);
+            this.button_preview_left.TabIndex = 12;
+            this.button_preview_left.Text = "<-";
+            this.button_preview_left.UseVisualStyleBackColor = true;
+            this.button_preview_left.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button6
+            // button_preview_right
             // 
-            this.button6.Location = new System.Drawing.Point(608, 88);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(31, 23);
-            this.button6.TabIndex = 13;
-            this.button6.Text = "->";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button_preview_right.Location = new System.Drawing.Point(608, 88);
+            this.button_preview_right.Name = "button_preview_right";
+            this.button_preview_right.Size = new System.Drawing.Size(31, 23);
+            this.button_preview_right.TabIndex = 13;
+            this.button_preview_right.Text = "->";
+            this.button_preview_right.UseVisualStyleBackColor = true;
+            this.button_preview_right.Click += new System.EventHandler(this.button6_Click);
             // 
-            // label1
+            // label_preview
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(321, 93);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Preview of Dump:";
+            this.label_preview.AutoSize = true;
+            this.label_preview.Location = new System.Drawing.Point(321, 93);
+            this.label_preview.Name = "label_preview";
+            this.label_preview.Size = new System.Drawing.Size(91, 13);
+            this.label_preview.TabIndex = 14;
+            this.label_preview.Text = "Preview of Dump:";
             // 
-            // button7
+            // button_saveDump
             // 
-            this.button7.Location = new System.Drawing.Point(564, 33);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 15;
-            this.button7.Text = "Save";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button_saveDump.Location = new System.Drawing.Point(564, 33);
+            this.button_saveDump.Name = "button_saveDump";
+            this.button_saveDump.Size = new System.Drawing.Size(75, 23);
+            this.button_saveDump.TabIndex = 15;
+            this.button_saveDump.Text = "Save";
+            this.button_saveDump.UseVisualStyleBackColor = true;
+            this.button_saveDump.Click += new System.EventHandler(this.button7_Click);
             // 
-            // button8
+            // button_preview_save
             // 
-            this.button8.Location = new System.Drawing.Point(563, 88);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(43, 23);
-            this.button8.TabIndex = 16;
-            this.button8.Text = "Save";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.button_preview_save.Location = new System.Drawing.Point(563, 88);
+            this.button_preview_save.Name = "button_preview_save";
+            this.button_preview_save.Size = new System.Drawing.Size(43, 23);
+            this.button_preview_save.TabIndex = 16;
+            this.button_preview_save.Text = "Save";
+            this.button_preview_save.UseVisualStyleBackColor = true;
+            this.button_preview_save.Click += new System.EventHandler(this.button8_Click);
             // 
-            // button9
+            // button_preview_random
             // 
-            this.button9.Location = new System.Drawing.Point(498, 88);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(59, 23);
-            this.button9.TabIndex = 17;
-            this.button9.Text = "Random";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.button_preview_random.Location = new System.Drawing.Point(498, 88);
+            this.button_preview_random.Name = "button_preview_random";
+            this.button_preview_random.Size = new System.Drawing.Size(59, 23);
+            this.button_preview_random.TabIndex = 17;
+            this.button_preview_random.Text = "Random";
+            this.button_preview_random.UseVisualStyleBackColor = true;
+            this.button_preview_random.Click += new System.EventHandler(this.button9_Click);
             // 
-            // button10
+            // button_preview_clear
             // 
-            this.button10.Location = new System.Drawing.Point(452, 88);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(40, 23);
-            this.button10.TabIndex = 18;
-            this.button10.Text = "Clear";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.button_preview_clear.Location = new System.Drawing.Point(452, 88);
+            this.button_preview_clear.Name = "button_preview_clear";
+            this.button_preview_clear.Size = new System.Drawing.Size(40, 23);
+            this.button_preview_clear.TabIndex = 18;
+            this.button_preview_clear.Text = "Clear";
+            this.button_preview_clear.UseVisualStyleBackColor = true;
+            this.button_preview_clear.Click += new System.EventHandler(this.button10_Click);
             // 
-            // Form1
+            // MainFormImageScraper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(652, 340);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.check_jpg);
-            this.Controls.Add(this.check_png);
-            this.Controls.Add(this.check_open);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.txt_url);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_preview_clear);
+            this.Controls.Add(this.button_preview_random);
+            this.Controls.Add(this.button_preview_save);
+            this.Controls.Add(this.button_saveDump);
+            this.Controls.Add(this.label_preview);
+            this.Controls.Add(this.button_preview_right);
+            this.Controls.Add(this.button_preview_left);
+            this.Controls.Add(this.pictureBox_preview);
+            this.Controls.Add(this.check_FitlerJPG);
+            this.Controls.Add(this.check_FilterPNG);
+            this.Controls.Add(this.check_openDirectory);
+            this.Controls.Add(this.button_openDump);
+            this.Controls.Add(this.button_archiveDump);
+            this.Controls.Add(this.progessBar_dump);
+            this.Controls.Add(this.button_clearDump);
+            this.Controls.Add(this.textBox_url);
+            this.Controls.Add(this.textBox_log);
+            this.Controls.Add(this.button_startDump);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Form1";
+            this.Name = "MainFormImageScraper";
             this.Text = "Image Scraper";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_preview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,24 +259,24 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox txt_url;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.CheckBox check_open;
-        private System.Windows.Forms.CheckBox check_png;
-        private System.Windows.Forms.CheckBox check_jpg;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button_startDump;
+        private System.Windows.Forms.TextBox textBox_log;
+        private System.Windows.Forms.TextBox textBox_url;
+        private System.Windows.Forms.Button button_clearDump;
+        private System.Windows.Forms.ProgressBar progessBar_dump;
+        private System.Windows.Forms.Button button_archiveDump;
+        private System.Windows.Forms.Button button_openDump;
+        private System.Windows.Forms.CheckBox check_openDirectory;
+        private System.Windows.Forms.CheckBox check_FilterPNG;
+        private System.Windows.Forms.CheckBox check_FitlerJPG;
+        private System.Windows.Forms.PictureBox pictureBox_preview;
+        private System.Windows.Forms.Button button_preview_left;
+        private System.Windows.Forms.Button button_preview_right;
+        private System.Windows.Forms.Label label_preview;
+        private System.Windows.Forms.Button button_saveDump;
+        private System.Windows.Forms.Button button_preview_save;
+        private System.Windows.Forms.Button button_preview_random;
+        private System.Windows.Forms.Button button_preview_clear;
     }
 }
 
