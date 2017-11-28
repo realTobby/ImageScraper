@@ -1,14 +1,16 @@
 # ImageScraper
-Gets all PNGs and JPGs of a Website
+*What?
+This tool scrapes all images on a website.
+You just need to specify what extensions (formats) you want
+the tool to look for.
+(For example: .jpg or .png)
 
-1. specifiy a website
-2. select filters
-3. hit "dump"
-4. wait for it to end
-
-Get a list of all pngs/jpgs on a website.
-You can preview all of them inside.
-
-Save only specific pictures or the whole list.
+*How?
+Specifiy a website
+Add filters (extensions)
+Hit "dump"
+Wait for the process to end
+Look trough what the tool found and save single images.
+Or save the whole dump.
 
 
