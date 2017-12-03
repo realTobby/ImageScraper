@@ -51,7 +51,7 @@ namespace _ImageScraper
             }
         }
 
-        public static List<List<string>> GetAllImageLinks()
+        public static List<List<string>> GetAllImageLinks(List<string> imageUrls)
         {
             Console.WriteLine("Called function GetAllImageLinks()");
             List<string> tmpList = new List<string>();
@@ -59,46 +59,10 @@ namespace _ImageScraper
             foreach(var item in filterList)
             {
                 tmpList = new List<string>();
-                tmpList = DumpImageFormat(item, dumpedCode);
+                tmpList = imageUrls.Where(x => x.EndsWith(item)).ToList();
                 result.Add(tmpList);
             }
             return result;
-        }
-
-        public static string DumpHTML(string url)
-        {
-            Console.WriteLine("Called function DumpHTML()");
-            try
-            {
-                string urlAddress = url;
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlAddress);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                string code = "";
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    Stream receiveStream = response.GetResponseStream();
-                    StreamReader readStream = null;
-
-                    if (response.CharacterSet == null)
-                    {
-                        readStream = new StreamReader(receiveStream);
-                    }
-                    else
-                    {
-                        readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
-                    }
-
-                    code = readStream.ReadToEnd();
-                    response.Close();
-                    readStream.Close();
-                }
-                dumpedCode = code;
-                return code;
-            }catch(Exception ex)
-            {
-                // ugly excpetion until i find a better solution
-                return "";
-            }
         }
 
         public static string PrepareUrl(string enteredUrl)
@@ -116,40 +80,7 @@ namespace _ImageScraper
             webUrl = txtUrl;
             return txtUrl;
         }
-
-        public static List<string> DumpImageFormat(string format, string dumpedCode)
-        {
-            Console.WriteLine("Called function DumpImageFormat(" + format + ", dumpedCode)");
-            List<string> imageurls = new List<string>();
-            while (dumpedCode.Contains(format))
-            {
-                int indx = dumpedCode.IndexOf(format);
-                string firstMarker = "";
-                for (int i = 0; i < format.Length; i++)
-                {
-                    firstMarker = firstMarker + dumpedCode[indx + i].ToString();
-                }
-                string imagelink = "";
-                for (int i = indx - 1; i > 0; i--)
-                {
-                    if (dumpedCode[i] != '"')
-                        imagelink = dumpedCode[i] + imagelink;
-                    else
-                        i = 0;
-                }
-                if (imagelink != "")
-                {
-                    if (imagelink[0] != 'h' && imagelink[1] != 't' && imagelink[2] != 't' && imagelink[3] != 'p')
-                    {
-                        imagelink = webUrl + imagelink;
-                    }
-                }
-                imageurls.Add(imagelink + firstMarker);
-                dumpedCode = dumpedCode.Remove(0, indx + 3);
-            }
-            return imageurls;
-        }
-
+        
         static bool IsValidUri(String uri)
         {
             Console.WriteLine("Called function IsValidUri()");

@@ -21,9 +21,13 @@ namespace _ImageScraper
         public int maxShow = 0;
         public Random rnd = new Random();
 
+        private WebBrowser webBrowser = new WebBrowser();
+        private Stopwatch timer = new Stopwatch();
+
         public MainFormImageScraper()
         {
             InitializeComponent();
+            webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -80,32 +84,41 @@ namespace _ImageScraper
             }
             else
             {
+                Duration1.Text = "...";
+                timer.Restart();
                 progessBar_dump.Value = 0;
                 string webUrl = ImageScrape.PrepareUrl(textBox_url.Text);
                 textBox_log.Text = "";
-                string dumpedCode = ImageScrape.DumpHTML(webUrl);
-                System.IO.File.WriteAllText("dumpedCode.txt", dumpedCode);
-                System.IO.Directory.CreateDirectory("dumpedImages");
 
-
-                List<List<string>> dumpingList = ImageScrape.GetAllImageLinks();
-
-                label_progress.Text = "0/" + GetMaxCount(dumpingList);
-
-
-                DumpNLogEverything(dumpingList);
-
-                if (check_openDirectory.Checked == true)
-                    Process.Start("dumpedImages");
-
-                pictureBox_preview.Image = ImageScrape.DumpedList[0];
-
-                maxShow = ImageScrape.DumpedList.Count;
+                webBrowser.Navigate(webUrl);
             }
+        }
 
+        private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            System.IO.File.WriteAllText("dumpedCode.txt", webBrowser.DocumentText);
+            System.IO.Directory.CreateDirectory("dumpedImages");
 
-            
+            var images = webBrowser.Document
+                .GetElementsByTagName("img")
+                .OfType<HtmlElement>()
+                .Select(x => x.GetAttribute("src"))
+                .ToList();
 
+            List<List<string>> dumpingList = ImageScrape.GetAllImageLinks(images);
+
+            label_progress.Text = "0/" + GetMaxCount(dumpingList);
+
+            DumpNLogEverything(dumpingList);
+
+            if (check_openDirectory.Checked == true)
+                Process.Start("dumpedImages");
+
+            pictureBox_preview.Image = ImageScrape.DumpedList[0];
+
+            maxShow = ImageScrape.DumpedList.Count;
+            timer.Stop();
+            Duration1.Text = timer.ElapsedMilliseconds + " ms";
         }
 
 

@@ -47,14 +47,16 @@
             this.textBox_filter = new System.Windows.Forms.TextBox();
             this.button_addFilter = new System.Windows.Forms.Button();
             this.label_progress = new System.Windows.Forms.Label();
+            this.Duration1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_preview)).BeginInit();
             this.SuspendLayout();
             // 
             // button_startDump
             // 
-            this.button_startDump.Location = new System.Drawing.Point(12, 38);
+            this.button_startDump.Location = new System.Drawing.Point(18, 58);
+            this.button_startDump.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_startDump.Name = "button_startDump";
-            this.button_startDump.Size = new System.Drawing.Size(73, 23);
+            this.button_startDump.Size = new System.Drawing.Size(110, 35);
             this.button_startDump.TabIndex = 0;
             this.button_startDump.Text = "Dump";
             this.button_startDump.UseVisualStyleBackColor = true;
@@ -63,26 +65,29 @@
             // textBox_log
             // 
             this.textBox_log.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_log.Location = new System.Drawing.Point(6, 148);
+            this.textBox_log.Location = new System.Drawing.Point(9, 228);
+            this.textBox_log.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox_log.Multiline = true;
             this.textBox_log.Name = "textBox_log";
             this.textBox_log.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_log.Size = new System.Drawing.Size(410, 112);
+            this.textBox_log.Size = new System.Drawing.Size(613, 170);
             this.textBox_log.TabIndex = 1;
             // 
             // textBox_url
             // 
-            this.textBox_url.Location = new System.Drawing.Point(12, 12);
+            this.textBox_url.Location = new System.Drawing.Point(18, 18);
+            this.textBox_url.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox_url.Name = "textBox_url";
-            this.textBox_url.Size = new System.Drawing.Size(401, 20);
+            this.textBox_url.Size = new System.Drawing.Size(600, 26);
             this.textBox_url.TabIndex = 2;
             this.textBox_url.Text = "(url here)";
             // 
             // button_clearDump
             // 
-            this.button_clearDump.Location = new System.Drawing.Point(163, 96);
+            this.button_clearDump.Location = new System.Drawing.Point(244, 148);
+            this.button_clearDump.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_clearDump.Name = "button_clearDump";
-            this.button_clearDump.Size = new System.Drawing.Size(90, 23);
+            this.button_clearDump.Size = new System.Drawing.Size(135, 35);
             this.button_clearDump.TabIndex = 3;
             this.button_clearDump.Text = "Clear Dump";
             this.button_clearDump.UseVisualStyleBackColor = true;
@@ -91,16 +96,18 @@
             // 
             // progessBar_dump
             // 
-            this.progessBar_dump.Location = new System.Drawing.Point(12, 67);
+            this.progessBar_dump.Location = new System.Drawing.Point(18, 103);
+            this.progessBar_dump.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.progessBar_dump.Name = "progessBar_dump";
-            this.progessBar_dump.Size = new System.Drawing.Size(401, 23);
+            this.progessBar_dump.Size = new System.Drawing.Size(602, 35);
             this.progessBar_dump.TabIndex = 4;
             // 
             // button_archiveDump
             // 
-            this.button_archiveDump.Location = new System.Drawing.Point(75, 96);
+            this.button_archiveDump.Location = new System.Drawing.Point(112, 148);
+            this.button_archiveDump.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_archiveDump.Name = "button_archiveDump";
-            this.button_archiveDump.Size = new System.Drawing.Size(85, 23);
+            this.button_archiveDump.Size = new System.Drawing.Size(128, 35);
             this.button_archiveDump.TabIndex = 5;
             this.button_archiveDump.Text = "Archive Dump";
             this.button_archiveDump.UseVisualStyleBackColor = true;
@@ -108,9 +115,10 @@
             // 
             // button_openDump
             // 
-            this.button_openDump.Location = new System.Drawing.Point(259, 96);
+            this.button_openDump.Location = new System.Drawing.Point(388, 148);
+            this.button_openDump.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_openDump.Name = "button_openDump";
-            this.button_openDump.Size = new System.Drawing.Size(75, 23);
+            this.button_openDump.Size = new System.Drawing.Size(112, 35);
             this.button_openDump.TabIndex = 6;
             this.button_openDump.Text = "Open Dump";
             this.button_openDump.UseVisualStyleBackColor = true;
@@ -120,27 +128,30 @@
             // 
             this.check_openDirectory.AutoSize = true;
             this.check_openDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.check_openDirectory.Location = new System.Drawing.Point(12, 125);
+            this.check_openDirectory.Location = new System.Drawing.Point(18, 192);
+            this.check_openDirectory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.check_openDirectory.Name = "check_openDirectory";
-            this.check_openDirectory.Size = new System.Drawing.Size(152, 17);
+            this.check_openDirectory.Size = new System.Drawing.Size(238, 24);
             this.check_openDirectory.TabIndex = 8;
             this.check_openDirectory.Text = "Open Directory after Dump";
             this.check_openDirectory.UseVisualStyleBackColor = true;
             // 
             // pictureBox_preview
             // 
-            this.pictureBox_preview.Location = new System.Drawing.Point(91, 266);
+            this.pictureBox_preview.Location = new System.Drawing.Point(136, 409);
+            this.pictureBox_preview.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox_preview.Name = "pictureBox_preview";
-            this.pictureBox_preview.Size = new System.Drawing.Size(224, 137);
+            this.pictureBox_preview.Size = new System.Drawing.Size(336, 211);
             this.pictureBox_preview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_preview.TabIndex = 11;
             this.pictureBox_preview.TabStop = false;
             // 
             // button_preview_left
             // 
-            this.button_preview_left.Location = new System.Drawing.Point(91, 404);
+            this.button_preview_left.Location = new System.Drawing.Point(136, 622);
+            this.button_preview_left.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_preview_left.Name = "button_preview_left";
-            this.button_preview_left.Size = new System.Drawing.Size(28, 23);
+            this.button_preview_left.Size = new System.Drawing.Size(42, 35);
             this.button_preview_left.TabIndex = 12;
             this.button_preview_left.Text = "<-";
             this.button_preview_left.UseVisualStyleBackColor = true;
@@ -148,9 +159,10 @@
             // 
             // button_preview_right
             // 
-            this.button_preview_right.Location = new System.Drawing.Point(285, 404);
+            this.button_preview_right.Location = new System.Drawing.Point(428, 622);
+            this.button_preview_right.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_preview_right.Name = "button_preview_right";
-            this.button_preview_right.Size = new System.Drawing.Size(31, 23);
+            this.button_preview_right.Size = new System.Drawing.Size(46, 35);
             this.button_preview_right.TabIndex = 13;
             this.button_preview_right.Text = "->";
             this.button_preview_right.UseVisualStyleBackColor = true;
@@ -159,17 +171,19 @@
             // label_preview
             // 
             this.label_preview.AutoSize = true;
-            this.label_preview.Location = new System.Drawing.Point(58, 266);
+            this.label_preview.Location = new System.Drawing.Point(87, 409);
+            this.label_preview.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_preview.Name = "label_preview";
-            this.label_preview.Size = new System.Drawing.Size(91, 13);
+            this.label_preview.Size = new System.Drawing.Size(132, 20);
             this.label_preview.TabIndex = 14;
             this.label_preview.Text = "Preview of Dump:";
             // 
             // button_saveDump
             // 
-            this.button_saveDump.Location = new System.Drawing.Point(12, 96);
+            this.button_saveDump.Location = new System.Drawing.Point(18, 148);
+            this.button_saveDump.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_saveDump.Name = "button_saveDump";
-            this.button_saveDump.Size = new System.Drawing.Size(57, 23);
+            this.button_saveDump.Size = new System.Drawing.Size(86, 35);
             this.button_saveDump.TabIndex = 15;
             this.button_saveDump.Text = "Save";
             this.button_saveDump.UseVisualStyleBackColor = true;
@@ -177,9 +191,10 @@
             // 
             // button_preview_save
             // 
-            this.button_preview_save.Location = new System.Drawing.Point(236, 404);
+            this.button_preview_save.Location = new System.Drawing.Point(354, 622);
+            this.button_preview_save.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_preview_save.Name = "button_preview_save";
-            this.button_preview_save.Size = new System.Drawing.Size(43, 23);
+            this.button_preview_save.Size = new System.Drawing.Size(64, 35);
             this.button_preview_save.TabIndex = 16;
             this.button_preview_save.Text = "Save";
             this.button_preview_save.UseVisualStyleBackColor = true;
@@ -187,9 +202,10 @@
             // 
             // button_preview_random
             // 
-            this.button_preview_random.Location = new System.Drawing.Point(171, 404);
+            this.button_preview_random.Location = new System.Drawing.Point(256, 622);
+            this.button_preview_random.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_preview_random.Name = "button_preview_random";
-            this.button_preview_random.Size = new System.Drawing.Size(59, 23);
+            this.button_preview_random.Size = new System.Drawing.Size(88, 35);
             this.button_preview_random.TabIndex = 17;
             this.button_preview_random.Text = "Random";
             this.button_preview_random.UseVisualStyleBackColor = true;
@@ -197,9 +213,10 @@
             // 
             // button_preview_clear
             // 
-            this.button_preview_clear.Location = new System.Drawing.Point(125, 404);
+            this.button_preview_clear.Location = new System.Drawing.Point(188, 622);
+            this.button_preview_clear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_preview_clear.Name = "button_preview_clear";
-            this.button_preview_clear.Size = new System.Drawing.Size(40, 23);
+            this.button_preview_clear.Size = new System.Drawing.Size(60, 35);
             this.button_preview_clear.TabIndex = 18;
             this.button_preview_clear.Text = "Clear";
             this.button_preview_clear.UseVisualStyleBackColor = true;
@@ -207,16 +224,18 @@
             // 
             // textBox_filter
             // 
-            this.textBox_filter.Location = new System.Drawing.Point(91, 41);
+            this.textBox_filter.Location = new System.Drawing.Point(136, 63);
+            this.textBox_filter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox_filter.Name = "textBox_filter";
-            this.textBox_filter.Size = new System.Drawing.Size(89, 20);
+            this.textBox_filter.Size = new System.Drawing.Size(132, 26);
             this.textBox_filter.TabIndex = 19;
             // 
             // button_addFilter
             // 
-            this.button_addFilter.Location = new System.Drawing.Point(186, 39);
+            this.button_addFilter.Location = new System.Drawing.Point(279, 60);
+            this.button_addFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_addFilter.Name = "button_addFilter";
-            this.button_addFilter.Size = new System.Drawing.Size(75, 23);
+            this.button_addFilter.Size = new System.Drawing.Size(112, 35);
             this.button_addFilter.TabIndex = 20;
             this.button_addFilter.Text = "Add Filter";
             this.button_addFilter.UseVisualStyleBackColor = true;
@@ -225,17 +244,27 @@
             // label_progress
             // 
             this.label_progress.AutoSize = true;
-            this.label_progress.Location = new System.Drawing.Point(183, 72);
+            this.label_progress.Location = new System.Drawing.Point(274, 111);
+            this.label_progress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_progress.Name = "label_progress";
-            this.label_progress.Size = new System.Drawing.Size(24, 13);
+            this.label_progress.Size = new System.Drawing.Size(31, 20);
             this.label_progress.TabIndex = 21;
             this.label_progress.Text = "0/0";
             // 
+            // Duration1
+            // 
+            this.Duration1.AutoSize = true;
+            this.Duration1.Location = new System.Drawing.Point(415, 63);
+            this.Duration1.Name = "Duration1";
+            this.Duration1.Size = new System.Drawing.Size(0, 20);
+            this.Duration1.TabIndex = 23;
+            // 
             // MainFormImageScraper
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 437);
+            this.ClientSize = new System.Drawing.Size(638, 672);
+            this.Controls.Add(this.Duration1);
             this.Controls.Add(this.label_progress);
             this.Controls.Add(this.button_addFilter);
             this.Controls.Add(this.textBox_filter);
@@ -256,6 +285,7 @@
             this.Controls.Add(this.textBox_log);
             this.Controls.Add(this.button_startDump);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainFormImageScraper";
             this.Text = "Image Scraper";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -286,6 +316,7 @@
         private System.Windows.Forms.TextBox textBox_filter;
         private System.Windows.Forms.Button button_addFilter;
         private System.Windows.Forms.Label label_progress;
+        private System.Windows.Forms.Label Duration1;
     }
 }
 
