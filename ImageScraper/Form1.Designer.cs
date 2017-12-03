@@ -58,7 +58,7 @@
             this.button_startDump.TabIndex = 0;
             this.button_startDump.Text = "Dump";
             this.button_startDump.UseVisualStyleBackColor = true;
-            this.button_startDump.Click += new System.EventHandler(this.button1_Click);
+            this.button_startDump.Click += new System.EventHandler(this.Dump_Click);
             // 
             // textBox_log
             // 
@@ -86,8 +86,7 @@
             this.button_clearDump.TabIndex = 3;
             this.button_clearDump.Text = "Clear Dump";
             this.button_clearDump.UseVisualStyleBackColor = true;
-            this.button_clearDump.Click += new System.EventHandler(this.button2_Click);
-            this.button_clearDump.Enter += new System.EventHandler(this.button2_Enter);
+            this.button_clearDump.Click += new System.EventHandler(this.ClearDump_Click);
             // 
             // progessBar_dump
             // 
@@ -104,7 +103,7 @@
             this.button_archiveDump.TabIndex = 5;
             this.button_archiveDump.Text = "Archive Dump";
             this.button_archiveDump.UseVisualStyleBackColor = true;
-            this.button_archiveDump.Click += new System.EventHandler(this.button3_Click);
+            this.button_archiveDump.Click += new System.EventHandler(this.ArchiveDump_Click);
             // 
             // button_openDump
             // 
@@ -114,7 +113,7 @@
             this.button_openDump.TabIndex = 6;
             this.button_openDump.Text = "Open Dump";
             this.button_openDump.UseVisualStyleBackColor = true;
-            this.button_openDump.Click += new System.EventHandler(this.button4_Click);
+            this.button_openDump.Click += new System.EventHandler(this.OpenDump_Click);
             // 
             // check_openDirectory
             // 
@@ -144,7 +143,7 @@
             this.button_preview_left.TabIndex = 12;
             this.button_preview_left.Text = "<-";
             this.button_preview_left.UseVisualStyleBackColor = true;
-            this.button_preview_left.Click += new System.EventHandler(this.button5_Click);
+            this.button_preview_left.Click += new System.EventHandler(this.NewPreview_Left_Click);
             // 
             // button_preview_right
             // 
@@ -154,7 +153,7 @@
             this.button_preview_right.TabIndex = 13;
             this.button_preview_right.Text = "->";
             this.button_preview_right.UseVisualStyleBackColor = true;
-            this.button_preview_right.Click += new System.EventHandler(this.button6_Click);
+            this.button_preview_right.Click += new System.EventHandler(this.NewPreview_Right_Click);
             // 
             // label_preview
             // 
@@ -173,7 +172,7 @@
             this.button_saveDump.TabIndex = 15;
             this.button_saveDump.Text = "Save";
             this.button_saveDump.UseVisualStyleBackColor = true;
-            this.button_saveDump.Click += new System.EventHandler(this.button7_Click);
+            this.button_saveDump.Click += new System.EventHandler(this.SaveDump_Click);
             // 
             // button_preview_save
             // 
@@ -183,7 +182,7 @@
             this.button_preview_save.TabIndex = 16;
             this.button_preview_save.Text = "Save";
             this.button_preview_save.UseVisualStyleBackColor = true;
-            this.button_preview_save.Click += new System.EventHandler(this.button8_Click);
+            this.button_preview_save.Click += new System.EventHandler(this.Preview_Save_Click);
             // 
             // button_preview_random
             // 
@@ -193,7 +192,7 @@
             this.button_preview_random.TabIndex = 17;
             this.button_preview_random.Text = "Random";
             this.button_preview_random.UseVisualStyleBackColor = true;
-            this.button_preview_random.Click += new System.EventHandler(this.button9_Click);
+            this.button_preview_random.Click += new System.EventHandler(this.NewPreview_Random_Click);
             // 
             // button_preview_clear
             // 
@@ -203,7 +202,7 @@
             this.button_preview_clear.TabIndex = 18;
             this.button_preview_clear.Text = "Clear";
             this.button_preview_clear.UseVisualStyleBackColor = true;
-            this.button_preview_clear.Click += new System.EventHandler(this.button10_Click);
+            this.button_preview_clear.Click += new System.EventHandler(this.Peview_Clean_Click);
             // 
             // textBox_filter
             // 
