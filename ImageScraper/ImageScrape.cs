@@ -54,7 +54,7 @@ namespace _ImageScraper
             }
         }
 
-        public static List<List<string>> GetAllImageLinks()
+        public static List<List<string>> GetAllImageLinks(List<string> imageUrls)
         {
             Console.WriteLine("Called function GetAllImageLinks()");
             List<string> tmpList = new List<string>();
@@ -62,7 +62,7 @@ namespace _ImageScraper
             foreach(var item in filterList)
             {
                 tmpList = new List<string>();
-                tmpList = DumpImageFormat(item, dumpedCode);
+                tmpList = imageUrls.Where(x => x.EndsWith(item)).ToList();
                 result.Add(tmpList);
             }
             return result;
