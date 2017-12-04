@@ -1,4 +1,9 @@
 # ImageScraper
+
+CREDITS:
+*AidanFray*: contributing and fixing issues
+
+
 ![Screenshot](https://github.com/xSillusx/ImageScraper/blob/master/ImageScraper/ext/Screenshots/screen1.PNG)
 
 The ImageScraper looks trough a WebSite and returns all specified image formats.
