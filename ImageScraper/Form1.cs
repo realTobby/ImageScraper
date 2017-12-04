@@ -97,8 +97,8 @@ namespace _ImageScraper
 
                 if (check_openDirectory.Checked == true)
                     Process.Start("dumpedImages");
-
-                pictureBox_preview.Image = ImageScrape.DumpedList[0];
+                if(ImageScrape.DumpedList.Count > 0)
+                    pictureBox_preview.Image = ImageScrape.DumpedList[0];
 
                 maxShow = ImageScrape.DumpedList.Count;
             }

@@ -121,31 +121,35 @@ namespace _ImageScraper
         {
             Console.WriteLine("Called function DumpImageFormat(" + format + ", dumpedCode)");
             List<string> imageurls = new List<string>();
-            while (dumpedCode.Contains(format))
+            if (dumpedCode != null)
             {
-                int indx = dumpedCode.IndexOf(format);
-                string firstMarker = "";
-                for (int i = 0; i < format.Length; i++)
+                while (dumpedCode.Contains(format))
                 {
-                    firstMarker = firstMarker + dumpedCode[indx + i].ToString();
-                }
-                string imagelink = "";
-                for (int i = indx - 1; i > 0; i--)
-                {
-                    if (dumpedCode[i] != '"')
-                        imagelink = dumpedCode[i] + imagelink;
-                    else
-                        i = 0;
-                }
-                if (imagelink != "")
-                {
-                    if (imagelink[0] != 'h' && imagelink[1] != 't' && imagelink[2] != 't' && imagelink[3] != 'p')
+                    int indx = dumpedCode.IndexOf(format);
+                    string firstMarker = "";
+                    for (int i = 0; i < format.Length; i++)
                     {
-                        imagelink = webUrl + imagelink;
+                        firstMarker = firstMarker + dumpedCode[indx + i].ToString();
                     }
+                    string imagelink = "";
+                    for (int i = indx - 1; i > 0; i--)
+                    {
+                        if (dumpedCode[i] != '"')
+                            imagelink = dumpedCode[i] + imagelink;
+                        else
+                            i = 0;
+                    }
+                    if (imagelink != "")
+                    {
+                        if (imagelink[0] != 'h' && imagelink[1] != 't' && imagelink[2] != 't' && imagelink[3] != 'p')
+                        {
+                            imagelink = webUrl + imagelink;
+                        }
+                    }
+                    imageurls.Add(imagelink + firstMarker);
+                    dumpedCode = dumpedCode.Remove(0, indx + 3);
                 }
-                imageurls.Add(imagelink + firstMarker);
-                dumpedCode = dumpedCode.Remove(0, indx + 3);
+                return imageurls;
             }
             return imageurls;
         }
