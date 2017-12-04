@@ -96,6 +96,7 @@
   <ItemGroup>
     <Content Include="ext\Screenshots\screen1.PNG" />
     <Content Include="ext\Screenshots\screen2.PNG" />
+    <Content Include="ext\Screenshots\screen3.PNG" />
     <Content Include="MetroFramework.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
