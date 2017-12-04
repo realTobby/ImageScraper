@@ -10,3 +10,10 @@ The filter for the image formats is stored in a simple filter.txt in the root of
 
 
 
+CREDITS:
+
+*AidanFray*: contributing and fixing issues
+
+*dabutvin*: Optimized the way of scraping
+
+
