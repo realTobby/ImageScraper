@@ -14,18 +14,37 @@ namespace _ImageScraper
         public int maxShow = 0;
         public Random rnd = new Random();
 
+        private WebBrowser webBrowser = new WebBrowser();
+        private Stopwatch timer = new Stopwatch();
+
         public MainFormImageScraper()
         {
             InitializeComponent();
+            webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
         }
 
+        /// <summary>
+        /// The loading of the form just initializes the available filter options
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
             ImageScrape.LoadFilter();
         }
 
+        /// <summary>
+        /// Will download all images in the imageLists list and write everything into the logConsoleTextBox
+        /// </summary>
+        /// <param name="imageLists"></param>
         void DumpNLogEverything(List<List<string>> imageLists)
         {
+            if(check_duplicates.Checked == false)
+            {
+                imageLists = ImageScrape.RemoveAllDuplicates(imageLists);
+            }
+
+
             progessBar_dump.Maximum = 0;
             foreach (var item in imageLists)
             {
@@ -36,7 +55,8 @@ namespace _ImageScraper
             {
                 foreach (var listItem in item)
                 {
-                    textBox_log.Text = textBox_log.Text + Environment.NewLine + listItem;
+
+                    textBox_log.AppendText(Environment.NewLine + listItem);
                     textBox_log.Update();
                     Bitmap tmp = ImageScrape.GetImageFromURL(listItem);
 
@@ -55,6 +75,11 @@ namespace _ImageScraper
                 }
             }
         }
+        /// <summary>
+        /// Just returns all entries in the imageList (the imageList concists of multiple lists) This will count trough them
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         int GetMaxCount(List<List<string>> list)
         {
             int count = 0;
@@ -68,21 +93,44 @@ namespace _ImageScraper
             return count;
         }
 
-        //# Form Controls
+        /// <summary>
+        /// Inits the dumping process - Here is where the magic starts
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Dump_Click(object sender, EventArgs e)
         {
-            progessBar_dump.Value = 0;
-            string webUrl = ImageScrape.PrepareUrl(textBox_url.Text);
-            textBox_log.Text = "";
-            string dumpedCode = ImageScrape.DumpHTML(webUrl);
-            System.IO.File.WriteAllText("dumpedCode.txt", dumpedCode);
+            ImageScrape.LoadFilter();
+            if(ImageScrape.FilterList.Count <= 0)
+            {
+                MessageBox.Show("You need to add an filter first! (ex: .png, .bmp, .gif)");
+            }
+            else
+            {
+                Duration1.Text = "...";
+                timer.Restart();
+                progessBar_dump.Value = 0;
+                string webUrl = ImageScrape.PrepareUrl(textBox_url.Text);
+                textBox_log.Text = "";
+
+                webBrowser.Navigate(webUrl);
+            }
+        }
+
+        private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            System.IO.File.WriteAllText("dumpedCode.txt", webBrowser.DocumentText);
             System.IO.Directory.CreateDirectory("dumpedImages");
 
+            var images = webBrowser.Document
+                .GetElementsByTagName("img")
+                .OfType<HtmlElement>()
+                .Select(x => x.GetAttribute("src"))
+                .ToList();
 
-            List<List<string>> dumpingList = ImageScrape.GetAllImageLinks();
+            List<List<string>> dumpingList = ImageScrape.GetAllImageLinks(images);
 
             label_progress.Text = "0/" + GetMaxCount(dumpingList);
-
 
             DumpNLogEverything(dumpingList);
 
@@ -92,12 +140,19 @@ namespace _ImageScraper
             pictureBox_preview.Image = ImageScrape.DumpedList[0].Image;
 
             maxShow = ImageScrape.DumpedList.Count;
+            timer.Stop();
+            Duration1.Text = timer.ElapsedMilliseconds + " ms";
+            pictureBox_preview.Image = ImageScrape.DumpedList[0].Image;
+
+            maxShow = ImageScrape.DumpedList.Count;
         }
+
         private void ClearDump_Click(object sender, EventArgs e)
         {
             System.IO.Directory.Delete("dumpedImages", true);
             System.IO.Directory.CreateDirectory("dumpedImages");
         }
+
         private void ArchiveDump_Click(object sender, EventArgs e)
         {
             if (!System.IO.Directory.Exists("archive"))
@@ -110,10 +165,12 @@ namespace _ImageScraper
 
             ZipFile.CreateFromDirectory(startPath, zipPath, CompressionLevel.Fastest, true);
         }
+
         private void OpenDump_Click(object sender, EventArgs e)
         {
             Process.Start("dumpedImages");
         }
+
         private void SaveDump_Click(object sender, EventArgs e)
         {
             foreach (var item in ImageScrape.DumpedList)
@@ -178,6 +235,18 @@ namespace _ImageScraper
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void check_duplicates_CheckedChanged(object sender, EventArgs e)
+        {
+            if(check_duplicates.Checked == true)
+            {
+                check_duplicates.Text = "dump duplicates";
+            }
+            else
+            {
+                check_duplicates.Text = "skip duplicates";
+            }
         }
     }
 }

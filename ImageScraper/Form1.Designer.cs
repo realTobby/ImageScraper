@@ -47,6 +47,8 @@
             this.textBox_filter = new System.Windows.Forms.TextBox();
             this.button_addFilter = new System.Windows.Forms.Button();
             this.label_progress = new System.Windows.Forms.Label();
+            this.Duration1 = new System.Windows.Forms.Label();
+            this.check_duplicates = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_preview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -230,11 +232,35 @@
             this.label_progress.TabIndex = 21;
             this.label_progress.Text = "0/0";
             // 
+            // Duration1
+            // 
+            this.Duration1.AutoSize = true;
+            this.Duration1.Location = new System.Drawing.Point(277, 41);
+            this.Duration1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Duration1.Name = "Duration1";
+            this.Duration1.Size = new System.Drawing.Size(0, 13);
+            this.Duration1.TabIndex = 23;
+            // 
+            // check_duplicates
+            // 
+            this.check_duplicates.AutoSize = true;
+            this.check_duplicates.Checked = true;
+            this.check_duplicates.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.check_duplicates.Location = new System.Drawing.Point(163, 125);
+            this.check_duplicates.Name = "check_duplicates";
+            this.check_duplicates.Size = new System.Drawing.Size(103, 17);
+            this.check_duplicates.TabIndex = 24;
+            this.check_duplicates.Text = "dump duplicates";
+            this.check_duplicates.UseVisualStyleBackColor = true;
+            this.check_duplicates.CheckedChanged += new System.EventHandler(this.check_duplicates_CheckedChanged);
+            // 
             // MainFormImageScraper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(425, 437);
+            this.Controls.Add(this.check_duplicates);
+            this.Controls.Add(this.Duration1);
             this.Controls.Add(this.label_progress);
             this.Controls.Add(this.button_addFilter);
             this.Controls.Add(this.textBox_filter);
@@ -285,6 +311,8 @@
         private System.Windows.Forms.TextBox textBox_filter;
         private System.Windows.Forms.Button button_addFilter;
         private System.Windows.Forms.Label label_progress;
+        private System.Windows.Forms.Label Duration1;
+        private System.Windows.Forms.CheckBox check_duplicates;
     }
 }
 
