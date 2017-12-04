@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO.Compression;
+using System.Threading;
 
 namespace _ImageScraper
 {
@@ -39,11 +40,10 @@ namespace _ImageScraper
         /// <param name="imageLists"></param>
         void DumpNLogEverything(List<List<string>> imageLists)
         {
-            if(check_duplicates.Checked == false)
+            if (check_duplicates.Checked == false)
             {
                 imageLists = ImageScrape.RemoveAllDuplicates(imageLists);
             }
-
 
             progessBar_dump.Maximum = 0;
             foreach (var item in imageLists)
@@ -60,7 +60,6 @@ namespace _ImageScraper
                     textBox_log.Update();
                     Bitmap tmp = ImageScrape.GetImageFromURL(listItem);
 
-                    //## Added code - Aidan Fray ##
                     //Grabs extension
                     string[] parts = listItem.Split('.');
                     string extension = parts[parts.Length - 1]; //Assumes the last section is the file name
@@ -75,6 +74,7 @@ namespace _ImageScraper
                 }
             }
         }
+
         /// <summary>
         /// Just returns all entries in the imageList (the imageList concists of multiple lists) This will count trough them
         /// </summary>
@@ -101,50 +101,80 @@ namespace _ImageScraper
         private void Dump_Click(object sender, EventArgs e)
         {
             ImageScrape.LoadFilter();
-            if(ImageScrape.FilterList.Count <= 0)
+            if (ImageScrape.FilterList.Count <= 0)
             {
                 MessageBox.Show("You need to add an filter first! (ex: .png, .bmp, .gif)");
             }
             else
             {
                 Duration1.Text = "...";
-                timer.Restart();
                 progessBar_dump.Value = 0;
-                string webUrl = ImageScrape.PrepareUrl(textBox_url.Text);
                 textBox_log.Text = "";
+                timer.Restart();
 
-                webBrowser.Navigate(webUrl);
+                //Sets of the dumping in another thread
+                Dump_Thread();
+            }
+        }
+
+        /// <summary>
+        /// The method that deals with threading the dump functionality
+        /// </summary>
+        private void Dump_Thread()
+        {
+            try
+            {
+                Thread t = new Thread(() =>
+                {
+                    string webUrl = ImageScrape.PrepareUrl(textBox_url.Text);
+                    webBrowser.Navigate(webUrl);
+                    Application.Run();
+                });
+                t.SetApartmentState(ApartmentState.STA);
+                t.Start();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
 
         private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            System.IO.File.WriteAllText("dumpedCode.txt", webBrowser.DocumentText);
-            System.IO.Directory.CreateDirectory("dumpedImages");
+            try
+            {
+                System.IO.File.WriteAllText("dumpedCode.txt", webBrowser.DocumentText);
+                System.IO.Directory.CreateDirectory("dumpedImages");
 
-            var images = webBrowser.Document
-                .GetElementsByTagName("img")
-                .OfType<HtmlElement>()
-                .Select(x => x.GetAttribute("src"))
-                .ToList();
+                var images = webBrowser.Document
+                    .GetElementsByTagName("img")
+                    .OfType<HtmlElement>()
+                    .Select(x => x.GetAttribute("src"))
+                    .ToList();
 
-            List<List<string>> dumpingList = ImageScrape.GetAllImageLinks(images);
+                List<List<string>> dumpingList = ImageScrape.GetAllImageLinks(images);
 
-            label_progress.Text = "0/" + GetMaxCount(dumpingList);
+                //Threading - there a cleaner way to do this?
+                //All this code needs to be run for the thread it was created on or there will be problems
+                Invoke(new Action(() =>
+                {
+                    //Main functionality
+                    DumpNLogEverything(dumpingList);
+                    pictureBox_preview.Image = ImageScrape.DumpedList[0].Image;
+                    maxShow = ImageScrape.DumpedList.Count;
 
-            DumpNLogEverything(dumpingList);
+                    //Shows how long the operation took
+                    timer.Stop();
+                    Duration1.Text = timer.ElapsedMilliseconds + " ms";
+                }));
 
-            if (check_openDirectory.Checked == true)
-                Process.Start("dumpedImages");
-
-            pictureBox_preview.Image = ImageScrape.DumpedList[0].Image;
-
-            maxShow = ImageScrape.DumpedList.Count;
-            timer.Stop();
-            Duration1.Text = timer.ElapsedMilliseconds + " ms";
-            pictureBox_preview.Image = ImageScrape.DumpedList[0].Image;
-
-            maxShow = ImageScrape.DumpedList.Count;
+                if (check_openDirectory.Checked == true)
+                    Process.Start("dumpedImages");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("WebBrowser: " + ex.Message);
+            }
         }
 
         private void ClearDump_Click(object sender, EventArgs e)
@@ -239,7 +269,7 @@ namespace _ImageScraper
 
         private void check_duplicates_CheckedChanged(object sender, EventArgs e)
         {
-            if(check_duplicates.Checked == true)
+            if (check_duplicates.Checked == true)
             {
                 check_duplicates.Text = "dump duplicates";
             }
