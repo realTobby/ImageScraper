@@ -54,6 +54,11 @@ namespace _ImageScraper
             }
         }
 
+        /// <summary>
+        /// returns all image links that were found
+        /// </summary>
+        /// <param name="imageUrls"></param>
+        /// <returns></returns>
         public static List<List<string>> GetAllImageLinks(List<string> imageUrls)
         {
             Console.WriteLine("Called function GetAllImageLinks()");
@@ -68,6 +73,11 @@ namespace _ImageScraper
             return result;
         }
 
+        /// <summary>
+        /// gets the html code of a website
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public static string DumpHTML(string url)
         {
             Console.WriteLine("Called function DumpHTML()");
@@ -110,6 +120,11 @@ namespace _ImageScraper
             }
         }
 
+        /// <summary>
+        /// will prepare the url so it will work (removes the s in https and the last /)
+        /// </summary>
+        /// <param name="enteredUrl"></param>
+        /// <returns></returns>
         public static string PrepareUrl(string enteredUrl)
         {
             Console.WriteLine("Called function PrepareUrl()");
@@ -126,6 +141,12 @@ namespace _ImageScraper
             return txtUrl;
         }
 
+        /// <summary>
+        /// will dump the specified image witth image format
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="dumpedCode"></param>
+        /// <returns></returns>
         public static List<string> DumpImageFormat(string format, string dumpedCode)
         {
             Console.WriteLine("Called function DumpImageFormat(" + format + ", dumpedCode)");
@@ -160,6 +181,11 @@ namespace _ImageScraper
             return imageurls;
         }
 
+        /// <summary>
+        /// simple check if the entered url is valid
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
         static bool IsValidUri(String uri)
         {
             Console.WriteLine("Called function IsValidUri()");
@@ -173,12 +199,20 @@ namespace _ImageScraper
                 return false;
             }
         }
+        /// <summary>
+        /// resets the dumpedList to no entries
+        /// </summary>
         public static void ResetDumpedList()
         {
             Console.WriteLine("Called function ResetDumpedList()");
             dumpedList = new List<DumpImage>();
         }
       
+        /// <summary>
+        /// gets the image corresponding with the url
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public static Bitmap GetImageFromURL(string url)
         {
             Console.WriteLine("Called function GetImageFromUrl(" + url + ")");
@@ -200,6 +234,9 @@ namespace _ImageScraper
             return img;
         }
 
+        /// <summary>
+        /// will save the filter options
+        /// </summary>
         public static void SaveFilter()
         {
             Console.WriteLine("Called function SaveFilter()");
@@ -211,6 +248,10 @@ namespace _ImageScraper
             }
             System.IO.File.WriteAllText("filter.txt", stuffToSave);
         }
+
+        /// <summary>
+        /// will load the filter options
+        /// </summary>
         public static void LoadFilter()
         {
             Console.WriteLine("Called function LoadFilter()");
