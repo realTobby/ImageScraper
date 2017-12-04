@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.IO;
 using System.Diagnostics;
 using System.IO.Compression;
+using _ImageScraper;
 
 namespace _ImageScraper
 {
@@ -23,6 +30,7 @@ namespace _ImageScraper
         {
             ImageScrape.LoadFilter();
         }
+        
 
         void DumpNLogEverything(List<List<string>> imageLists)
         {
@@ -39,13 +47,7 @@ namespace _ImageScraper
                     textBox_log.Text = textBox_log.Text + Environment.NewLine + listItem;
                     textBox_log.Update();
                     Bitmap tmp = ImageScrape.GetImageFromURL(listItem);
-
-                    //## Added code - Aidan Fray ##
-                    //Grabs extension
-                    string[] parts = listItem.Split('.');
-                    string extension = parts[parts.Length - 1]; //Assumes the last section is the file name
-                    ImageScrape.DumpedList.Add(new DumpImage(tmp, "." + extension));
-
+                    ImageScrape.DumpedList.Add(tmp);
                     pictureBox_preview.Image = tmp;
                     pictureBox_preview.Update();
                     progessBar_dump.Value = progessBar_dump.Value + 1;
@@ -55,12 +57,13 @@ namespace _ImageScraper
                 }
             }
         }
+
         int GetMaxCount(List<List<string>> list)
         {
             int count = 0;
-            foreach (var item in list)
+            foreach(var item in list)
             {
-                foreach (var itemlist in item)
+                foreach(var itemlist in item)
                 {
                     count = count + 1;
                 }
@@ -68,61 +71,83 @@ namespace _ImageScraper
             return count;
         }
 
-        //# Form Controls
-        private void Dump_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            progessBar_dump.Value = 0;
-            string webUrl = ImageScrape.PrepareUrl(textBox_url.Text);
-            textBox_log.Text = "";
-            string dumpedCode = ImageScrape.DumpHTML(webUrl);
-            System.IO.File.WriteAllText("dumpedCode.txt", dumpedCode);
-            System.IO.Directory.CreateDirectory("dumpedImages");
+            ImageScrape.LoadFilter();
+            if(ImageScrape.FilterList.Count <= 0)
+            {
+                MessageBox.Show("You need to add an filter first! (ex: .png, .bmp, .gif)");
+            }
+            else
+            {
+                progessBar_dump.Value = 0;
+                string webUrl = ImageScrape.PrepareUrl(textBox_url.Text);
+                textBox_log.Text = "";
+                string dumpedCode = ImageScrape.DumpHTML(webUrl);
+                System.IO.File.WriteAllText("dumpedCode.txt", dumpedCode);
+                System.IO.Directory.CreateDirectory("dumpedImages");
 
 
-            List<List<string>> dumpingList = ImageScrape.GetAllImageLinks();
+                List<List<string>> dumpingList = ImageScrape.GetAllImageLinks();
 
-            label_progress.Text = "0/" + GetMaxCount(dumpingList);
+                label_progress.Text = "0/" + GetMaxCount(dumpingList);
 
 
-            DumpNLogEverything(dumpingList);
+                DumpNLogEverything(dumpingList);
 
-            if (check_openDirectory.Checked == true)
-                Process.Start("dumpedImages");
+                if (check_openDirectory.Checked == true)
+                    Process.Start("dumpedImages");
 
-            pictureBox_preview.Image = ImageScrape.DumpedList[0].Image;
+                pictureBox_preview.Image = ImageScrape.DumpedList[0];
 
-            maxShow = ImageScrape.DumpedList.Count;
+                maxShow = ImageScrape.DumpedList.Count;
+            }
+
+
+            
+
         }
-        private void ClearDump_Click(object sender, EventArgs e)
+
+
+
+        private void button2_Click(object sender, EventArgs e)
         {
             System.IO.Directory.Delete("dumpedImages", true);
             System.IO.Directory.CreateDirectory("dumpedImages");
         }
-        private void ArchiveDump_Click(object sender, EventArgs e)
+
+        private void button3_Click(object sender, EventArgs e)
         {
-            if (!System.IO.Directory.Exists("archive"))
+            if(!System.IO.Directory.Exists("archive"))
             {
                 System.IO.Directory.CreateDirectory("archive");
             }
+
 
             string startPath = "dumpedImages";
             string zipPath = "archive/" + System.IO.Directory.GetFiles("archive").Count() + ".zip";
 
             ZipFile.CreateFromDirectory(startPath, zipPath, CompressionLevel.Fastest, true);
+
+
         }
-        private void OpenDump_Click(object sender, EventArgs e)
+
+        private void button4_Click(object sender, EventArgs e)
         {
             Process.Start("dumpedImages");
         }
-        private void SaveDump_Click(object sender, EventArgs e)
+
+        private void button2_Enter(object sender, EventArgs e)
         {
-            foreach (var item in ImageScrape.DumpedList)
-            {
-                item.Image.Save("dumpedImages/" + System.IO.Directory.GetFiles("dumpedImages").Length + item.Extension);
-            }
+
         }
 
-        private void NewPreview_Left_Click(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
         {
             if (ImageScrape.DumpedList.Count > 0)
             {
@@ -132,10 +157,11 @@ namespace _ImageScraper
                 if (currentShow > ImageScrape.DumpedList.Count)
                     currentShow = 0;
 
-                pictureBox_preview.Image = ImageScrape.DumpedList[currentShow].Image;
+                pictureBox_preview.Image = ImageScrape.DumpedList[currentShow];
             }
         }
-        private void NewPreview_Right_Click(object sender, EventArgs e)
+
+        private void button6_Click(object sender, EventArgs e)
         {
             if (ImageScrape.DumpedList.Count > 0)
             {
@@ -145,27 +171,43 @@ namespace _ImageScraper
                 if (currentShow > ImageScrape.DumpedList.Count)
                     currentShow = 1;
 
-                pictureBox_preview.Image = ImageScrape.DumpedList[currentShow - 1].Image;
+                pictureBox_preview.Image = ImageScrape.DumpedList[currentShow - 1];
             }
         }
-        private void NewPreview_Random_Click(object sender, EventArgs e)
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            foreach(var item in ImageScrape.DumpedList)
+            {
+                item.Save("dumpedImages/" + System.IO.Directory.GetFiles("dumpedImages").Length + ".png");
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if(pictureBox_preview.Image != null)
+                pictureBox_preview.Image.Save("dumpedImages/" + System.IO.Directory.GetFiles("dumpedImages").Length + ".png");
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            pictureBox_preview.Image = null;
+            ImageScrape.ResetDumpedList();
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
         {
             if (ImageScrape.DumpedList.Count > 0)
             {
                 int tmp = rnd.Next(0, ImageScrape.DumpedList.Count - 1);
-                pictureBox_preview.Image = ImageScrape.DumpedList[tmp].Image;
+                pictureBox_preview.Image = ImageScrape.DumpedList[tmp];
             }
         }
 
-        private void Preview_Save_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-            if (pictureBox_preview.Image != null)
-                pictureBox_preview.Image.Save("dumpedImages/" + System.IO.Directory.GetFiles("dumpedImages").Length + ".png");
-        }
-        private void Peview_Clean_Click(object sender, EventArgs e)
-        {
-            pictureBox_preview.Image = null;
-            ImageScrape.ResetDumpedList();
+            MessageBox.Show(ImageScrape.DumpedCode);
         }
 
         private void button_addFilter_Click(object sender, EventArgs e)
@@ -173,11 +215,6 @@ namespace _ImageScraper
             ImageScrape.FilterList.Add(textBox_filter.Text);
             ImageScrape.SaveFilter();
             textBox_filter.Text = "";
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
