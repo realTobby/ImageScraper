@@ -39,6 +39,12 @@ namespace _ImageScraper
         /// <param name="imageLists"></param>
         void DumpNLogEverything(List<List<string>> imageLists)
         {
+            if(check_duplicates.Checked == false)
+            {
+                imageLists = ImageScrape.RemoveAllDuplicates(imageLists);
+            }
+
+
             progessBar_dump.Maximum = 0;
             foreach (var item in imageLists)
             {
@@ -49,7 +55,8 @@ namespace _ImageScraper
             {
                 foreach (var listItem in item)
                 {
-                    textBox_log.Text = textBox_log.Text + Environment.NewLine + listItem;
+
+                    textBox_log.AppendText(Environment.NewLine + listItem);
                     textBox_log.Update();
                     Bitmap tmp = ImageScrape.GetImageFromURL(listItem);
 
@@ -228,6 +235,18 @@ namespace _ImageScraper
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void check_duplicates_CheckedChanged(object sender, EventArgs e)
+        {
+            if(check_duplicates.Checked == true)
+            {
+                check_duplicates.Text = "dump duplicates";
+            }
+            else
+            {
+                check_duplicates.Text = "skip duplicates";
+            }
         }
     }
 }

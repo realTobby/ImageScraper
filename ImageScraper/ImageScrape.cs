@@ -55,6 +55,20 @@ namespace _ImageScraper
         }
 
         /// <summary>
+        /// will return an imageList with no duplicates
+        /// </summary>
+        public static List<List<string>> RemoveAllDuplicates(List<List<string>> listToRemoveDupes)
+        {
+            List<List<string>> resultList = new List<List<string>>();
+            foreach (var formatList in listToRemoveDupes)
+            {
+                resultList.Add(formatList.Distinct().ToList());
+            }
+
+            return resultList;
+        }
+
+        /// <summary>
         /// returns all image links that were found
         /// </summary>
         /// <param name="imageUrls"></param>
