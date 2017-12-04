@@ -4,19 +4,22 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace _ImageScraper
 {
     public static class ImageScrape
     {
-        private static List<Image> dumpedList = new List<Image>();
         private static string dumpedCode;
         private static string webUrl;
         private static List<string> filterList = new List<string>();
 
-        public static List<Image> DumpedList
+        private static List<DumpImage> dumpedList = new List<DumpImage>();
+        public static List<DumpImage> DumpedList
         {
             get
             {
@@ -72,6 +75,11 @@ namespace _ImageScraper
             {
                 string urlAddress = url;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlAddress);
+
+                //Fix for the issues with TLS/SSL
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 string code = "";
                 if (response.StatusCode == HttpStatusCode.OK)
@@ -96,6 +104,7 @@ namespace _ImageScraper
                 return code;
             }catch(Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 // ugly excpetion until i find a better solution
                 return "";
             }
@@ -121,35 +130,32 @@ namespace _ImageScraper
         {
             Console.WriteLine("Called function DumpImageFormat(" + format + ", dumpedCode)");
             List<string> imageurls = new List<string>();
-            if (dumpedCode != null)
+            while (dumpedCode.Contains(format))
             {
-                while (dumpedCode.Contains(format))
+                int indx = dumpedCode.IndexOf(format);
+                string firstMarker = "";
+                for (int i = 0; i < format.Length; i++)
                 {
-                    int indx = dumpedCode.IndexOf(format);
-                    string firstMarker = "";
-                    for (int i = 0; i < format.Length; i++)
-                    {
-                        firstMarker = firstMarker + dumpedCode[indx + i].ToString();
-                    }
-                    string imagelink = "";
-                    for (int i = indx - 1; i > 0; i--)
-                    {
-                        if (dumpedCode[i] != '"')
-                            imagelink = dumpedCode[i] + imagelink;
-                        else
-                            i = 0;
-                    }
-                    if (imagelink != "")
-                    {
-                        if (imagelink[0] != 'h' && imagelink[1] != 't' && imagelink[2] != 't' && imagelink[3] != 'p')
-                        {
-                            imagelink = webUrl + imagelink;
-                        }
-                    }
-                    imageurls.Add(imagelink + firstMarker);
-                    dumpedCode = dumpedCode.Remove(0, indx + 3);
+                    firstMarker = firstMarker + dumpedCode[indx + i].ToString();
                 }
-                return imageurls;
+                string imagelink = "";
+                for (int i = indx - 1; i > 0; i--)
+                {
+                    if (dumpedCode[i] != '"')
+                        imagelink = dumpedCode[i] + imagelink;
+                    else
+                        i = 0;
+                }
+                //Fix added for imageLink not being longer than 4 so the statement below crashed 
+                if (imagelink != "" && imagelink.Length > 4)
+                {
+                    if (imagelink[0] != 'h' && imagelink[1] != 't' && imagelink[2] != 't' && imagelink[3] != 'p')
+                    {
+                        imagelink = webUrl + imagelink;
+                    }
+                }
+                imageurls.Add(imagelink + firstMarker);
+                dumpedCode = dumpedCode.Remove(0, indx + 3);
             }
             return imageurls;
         }
@@ -170,8 +176,9 @@ namespace _ImageScraper
         public static void ResetDumpedList()
         {
             Console.WriteLine("Called function ResetDumpedList()");
-            dumpedList = new List<Image>();
+            dumpedList = new List<DumpImage>();
         }
+      
         public static Bitmap GetImageFromURL(string url)
         {
             Console.WriteLine("Called function GetImageFromUrl(" + url + ")");
@@ -186,7 +193,7 @@ namespace _ImageScraper
                 }
                 catch(Exception ex)
                 {
-                    // ugly excpetion, this stays until i find another solution to this
+                    // TODO: ugly exception, this stays until i find another solution to this
                 }
                 return img;
             }
@@ -207,7 +214,7 @@ namespace _ImageScraper
         public static void LoadFilter()
         {
             Console.WriteLine("Called function LoadFilter()");
-            if (System.IO.File.Exists("filter.txt"))
+            if (File.Exists("filter.txt"))
             {
                 var tmp = System.IO.File.ReadAllLines("filter.txt");
                 filterList = new List<string>();
@@ -216,10 +223,12 @@ namespace _ImageScraper
                     filterList.Add(item);
                 }
             }
+
+            //Checks if there are filters set
+            if (ImageScrape.FilterList.Count <= 0)
+            {
+                MessageBox.Show("You need to add an filter first! (ex: .png, .bmp, .gif)");
+            }
         }
-
-
-
-
     }
 }
