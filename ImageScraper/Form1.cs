@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace _ImageScraper
 {
-    public partial class MainFormImageScraper : Form
+    public partial class MainFormImageScraper : MetroFramework.Forms.MetroForm
     {
         public int currentShow = 0;
         public int maxShow = 0;
@@ -132,10 +132,12 @@ namespace _ImageScraper
                 });
                 t.SetApartmentState(ApartmentState.STA);
                 t.Start();
+
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
+                
             }
         }
 
@@ -277,6 +279,14 @@ namespace _ImageScraper
             {
                 check_duplicates.Text = "skip duplicates";
             }
+        }
+
+        private void toggle_lightDark_CheckedChanged(object sender, EventArgs e)
+        {
+            if (toggle_lightDark.Checked == true)
+                this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            else
+                this.Theme = MetroFramework.MetroThemeStyle.Light;
         }
     }
 }
