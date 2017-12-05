@@ -1,4 +1,4 @@
-﻿namespace _ImageScraper
+namespace _ImageScraper
 {
     partial class MainFormImageScraper
     {
@@ -55,7 +55,6 @@
             // 
             // pictureBox_preview
             // 
-            this.pictureBox_preview.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox_preview.Location = new System.Drawing.Point(350, 52);
             this.pictureBox_preview.Name = "pictureBox_preview";
             this.pictureBox_preview.Size = new System.Drawing.Size(279, 246);

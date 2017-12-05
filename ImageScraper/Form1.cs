@@ -12,6 +12,7 @@ using MetroFramework.Forms;
 
 namespace _ImageScraper
 {
+
     public partial class MainFormImageScraper : MetroForm
     {
         public int currentShow = 0;
