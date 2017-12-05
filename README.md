@@ -4,7 +4,7 @@ To be exact, you can ask for ANY image format, just add the extension to the fil
 
 ![Screenshot](https://github.com/xSillusx/ImageScraper/blob/master/ImageScraper/ext/Screenshots/screen3.PNG)
 
-# Features
+# Features:
 - dumping images from websites
 - saving the whole dump or just single images
 - archiving the dump to a zip file
@@ -13,7 +13,7 @@ To be exact, you can ask for ANY image format, just add the extension to the fil
 
 
 
-# CREDITS:
+## Credits:
 
 *AidanFray*, *dabutvin*, *xSillusx*
 
