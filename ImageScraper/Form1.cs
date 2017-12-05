@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace _ImageScraper
 {
-    public partial class MainFormImageScraper : Form
+    public partial class MainFormImageScraper : MetroFramework.Forms.MetroForm
     {
         public int currentShow = 0;
         public int maxShow = 0;
@@ -21,7 +21,6 @@ namespace _ImageScraper
         public MainFormImageScraper()
         {
             InitializeComponent();
-            webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
         }
 
         /// <summary>
@@ -32,6 +31,7 @@ namespace _ImageScraper
         private void Form1_Load(object sender, EventArgs e)
         {
             ImageScrape.LoadFilter();
+            webBrowser.ScriptErrorsSuppressed = true; // maybe this will work? No more errors to the user
         }
 
         /// <summary>
@@ -124,22 +124,22 @@ namespace _ImageScraper
         {
             try
             {
-                Thread t = new Thread(() =>
+                string webUrl = textBox_url.Text;
+                webBrowser.Navigate(webUrl);
+                while (webBrowser.ReadyState != WebBrowserReadyState.Complete)
                 {
-                    string webUrl = ImageScrape.PrepareUrl(textBox_url.Text);
-                    webBrowser.Navigate(webUrl);
-                    Application.Run();
-                });
-                t.SetApartmentState(ApartmentState.STA);
-                t.Start();
+                    Application.DoEvents();
+                }
+                WebBrowser_DocumentCompleted();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
+
             }
         }
 
-        private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        private void WebBrowser_DocumentCompleted()
         {
             try
             {
@@ -277,6 +277,14 @@ namespace _ImageScraper
             {
                 check_duplicates.Text = "skip duplicates";
             }
+        }
+
+        private void toggle_lightDark_CheckedChanged(object sender, EventArgs e)
+        {
+            if (toggle_lightDark.Checked == true)
+                this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            else
+                this.Theme = MetroFramework.MetroThemeStyle.Light;
         }
     }
 }
