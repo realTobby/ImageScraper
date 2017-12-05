@@ -6,10 +6,13 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO.Compression;
 using System.Threading;
+using System.Threading.Tasks;
+using MetroFramework.Components;
+using MetroFramework.Forms;
 
 namespace _ImageScraper
 {
-    public partial class MainFormImageScraper : MetroFramework.Forms.MetroForm
+    public partial class MainFormImageScraper : MetroForm
     {
         public int currentShow = 0;
         public int maxShow = 0;
@@ -18,9 +21,12 @@ namespace _ImageScraper
         private WebBrowser webBrowser = new WebBrowser();
         private Stopwatch timer = new Stopwatch();
 
+        private MetroStyleManager manager = new MetroStyleManager();
+
         public MainFormImageScraper()
         {
             InitializeComponent();
+            manager.Owner = this;
         }
 
         /// <summary>
@@ -112,7 +118,6 @@ namespace _ImageScraper
                 textBox_log.Text = "";
                 timer.Restart();
 
-                //Sets of the dumping in another thread
                 Dump_Thread();
             }
         }
@@ -154,19 +159,14 @@ namespace _ImageScraper
 
                 List<List<string>> dumpingList = ImageScrape.GetAllImageLinks(images);
 
-                //Threading - there a cleaner way to do this?
-                //All this code needs to be run for the thread it was created on or there will be problems
-                Invoke(new Action(() =>
-                {
-                    //Main functionality
-                    DumpNLogEverything(dumpingList);
-                    pictureBox_preview.Image = ImageScrape.DumpedList[0].Image;
-                    maxShow = ImageScrape.DumpedList.Count;
+                //Main functionality
+                DumpNLogEverything(dumpingList);
+                pictureBox_preview.Image = ImageScrape.DumpedList[0].Image;
+                maxShow = ImageScrape.DumpedList.Count;
 
-                    //Shows how long the operation took
-                    timer.Stop();
-                    Duration1.Text = timer.ElapsedMilliseconds + " ms";
-                }));
+                //Shows how long the operation took
+                timer.Stop();
+                Duration1.Text = timer.ElapsedMilliseconds + " ms";
 
                 if (check_openDirectory.Checked == true)
                     Process.Start("dumpedImages");
@@ -282,9 +282,16 @@ namespace _ImageScraper
         private void toggle_lightDark_CheckedChanged(object sender, EventArgs e)
         {
             if (toggle_lightDark.Checked == true)
-                this.Theme = MetroFramework.MetroThemeStyle.Dark;
+                changeTheme(MetroFramework.MetroThemeStyle.Dark);
             else
-                this.Theme = MetroFramework.MetroThemeStyle.Light;
+                changeTheme(MetroFramework.MetroThemeStyle.Light);
+        }
+        
+        private void changeTheme(MetroFramework.MetroThemeStyle theme)
+        {
+            check_openDirectory.Theme = theme;
+            check_duplicates.Theme = theme;
+            manager.Theme = theme;
         }
     }
 }

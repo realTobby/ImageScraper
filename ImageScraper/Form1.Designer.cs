@@ -55,6 +55,7 @@
             // 
             // pictureBox_preview
             // 
+            this.pictureBox_preview.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox_preview.Location = new System.Drawing.Point(350, 52);
             this.pictureBox_preview.Name = "pictureBox_preview";
             this.pictureBox_preview.Size = new System.Drawing.Size(279, 246);
@@ -87,6 +88,7 @@
             this.textBox_url.Size = new System.Drawing.Size(321, 23);
             this.textBox_url.TabIndex = 25;
             this.textBox_url.Text = "(url here)";
+            this.textBox_url.UseStyleColors = true;
             // 
             // button_startDump
             // 
@@ -159,22 +161,31 @@
             // check_openDirectory
             // 
             this.check_openDirectory.AutoSize = true;
+            this.check_openDirectory.BackColor = System.Drawing.Color.Transparent;
             this.check_openDirectory.Location = new System.Drawing.Point(23, 179);
             this.check_openDirectory.Name = "check_openDirectory";
-            this.check_openDirectory.Size = new System.Drawing.Size(164, 15);
+            this.check_openDirectory.Size = new System.Drawing.Size(166, 15);
             this.check_openDirectory.TabIndex = 34;
-            this.check_openDirectory.Text = "open Directory after Dump";
-            this.check_openDirectory.UseVisualStyleBackColor = true;
+            this.check_openDirectory.Text = "Open Directory after Dump";
+            this.check_openDirectory.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.check_openDirectory.UseStyleColors = true;
+            this.check_openDirectory.UseVisualStyleBackColor = false;
             // 
             // check_duplicates
             // 
             this.check_duplicates.AutoSize = true;
+            this.check_duplicates.BackColor = System.Drawing.Color.Black;
+            this.check_duplicates.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.check_duplicates.Location = new System.Drawing.Point(225, 179);
             this.check_duplicates.Name = "check_duplicates";
+            this.check_duplicates.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.check_duplicates.Size = new System.Drawing.Size(101, 15);
             this.check_duplicates.TabIndex = 35;
             this.check_duplicates.Text = "skip duplicates";
-            this.check_duplicates.UseVisualStyleBackColor = true;
+            this.check_duplicates.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.check_duplicates.UseStyleColors = true;
+            this.check_duplicates.UseVisualStyleBackColor = false;
+            this.check_duplicates.UseWaitCursor = true;
             this.check_duplicates.CheckedChanged += new System.EventHandler(this.check_duplicates_CheckedChanged);
             // 
             // textBox_log
@@ -184,6 +195,7 @@
             this.textBox_log.Name = "textBox_log";
             this.textBox_log.Size = new System.Drawing.Size(321, 176);
             this.textBox_log.TabIndex = 36;
+            this.textBox_log.UseStyleColors = true;
             // 
             // metroLabel1
             // 
@@ -193,6 +205,7 @@
             this.metroLabel1.Size = new System.Drawing.Size(97, 19);
             this.metroLabel1.TabIndex = 37;
             this.metroLabel1.Text = "Preview Dump:";
+            this.metroLabel1.UseStyleColors = true;
             // 
             // button_preview_left
             // 
@@ -246,7 +259,7 @@
             this.toggle_lightDark.Name = "toggle_lightDark";
             this.toggle_lightDark.Size = new System.Drawing.Size(80, 17);
             this.toggle_lightDark.TabIndex = 43;
-            this.toggle_lightDark.Text = "Aus";
+            this.toggle_lightDark.Text = "Off";
             this.toggle_lightDark.UseVisualStyleBackColor = true;
             this.toggle_lightDark.CheckedChanged += new System.EventHandler(this.toggle_lightDark_CheckedChanged);
             // 
