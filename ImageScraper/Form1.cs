@@ -31,6 +31,7 @@ namespace _ImageScraper
         private void Form1_Load(object sender, EventArgs e)
         {
             ImageScrape.LoadFilter();
+            webBrowser.ScriptErrorsSuppressed = true; // maybe this will work? No more errors to the user
         }
 
         /// <summary>
