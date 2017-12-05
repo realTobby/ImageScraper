@@ -13,7 +13,7 @@ To be exact, you can ask for ANY image format, just add the extension to the fil
 
 
 
-CREDITS:
+# CREDITS:
 
 *AidanFray*, *dabutvin*, *xSillusx*
 
