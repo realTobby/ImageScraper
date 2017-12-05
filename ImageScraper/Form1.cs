@@ -21,7 +21,6 @@ namespace _ImageScraper
         public MainFormImageScraper()
         {
             InitializeComponent();
-            webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
         }
 
         /// <summary>
@@ -124,24 +123,22 @@ namespace _ImageScraper
         {
             try
             {
-                Thread t = new Thread(() =>
+                string webUrl = textBox_url.Text;
+                webBrowser.Navigate(webUrl);
+                while (webBrowser.ReadyState != WebBrowserReadyState.Complete)
                 {
-                    string webUrl = ImageScrape.PrepareUrl(textBox_url.Text);
-                    webBrowser.Navigate(webUrl);
-                    Application.Run();
-                });
-                t.SetApartmentState(ApartmentState.STA);
-                t.Start();
-
+                    Application.DoEvents();
+                }
+                WebBrowser_DocumentCompleted();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-                
+
             }
         }
 
-        private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        private void WebBrowser_DocumentCompleted()
         {
             try
             {
