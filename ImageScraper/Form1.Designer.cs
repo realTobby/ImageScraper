@@ -50,6 +50,7 @@ namespace _ImageScraper
             this.button_preview_save = new MetroFramework.Controls.MetroButton();
             this.button_preview_right = new MetroFramework.Controls.MetroButton();
             this.toggle_lightDark = new MetroFramework.Controls.MetroToggle();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_preview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -258,9 +259,19 @@ namespace _ImageScraper
             this.toggle_lightDark.Name = "toggle_lightDark";
             this.toggle_lightDark.Size = new System.Drawing.Size(80, 17);
             this.toggle_lightDark.TabIndex = 43;
-            this.toggle_lightDark.Text = "Off";
+            this.toggle_lightDark.Text = "Aus";
             this.toggle_lightDark.UseVisualStyleBackColor = true;
             this.toggle_lightDark.CheckedChanged += new System.EventHandler(this.toggle_lightDark_CheckedChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(350, 334);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(85, 17);
+            this.checkBox1.TabIndex = 44;
+            this.checkBox1.Text = "4chan mode";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // MainFormImageScraper
             // 
@@ -268,6 +279,7 @@ namespace _ImageScraper
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(650, 393);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.toggle_lightDark);
             this.Controls.Add(this.button_preview_right);
             this.Controls.Add(this.button_preview_save);
@@ -325,6 +337,7 @@ namespace _ImageScraper
         private MetroFramework.Controls.MetroButton button_preview_save;
         private MetroFramework.Controls.MetroButton button_preview_right;
         private MetroFramework.Controls.MetroToggle toggle_lightDark;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

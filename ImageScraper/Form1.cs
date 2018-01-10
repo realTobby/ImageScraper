@@ -46,39 +46,118 @@ namespace _ImageScraper
         /// <param name="imageLists"></param>
         void DumpNLogEverything(List<List<string>> imageLists)
         {
+            progessBar_dump.Value = 0;
+            progessBar_dump.Maximum = imageLists.Count;
+
+
             if (check_duplicates.Checked == false)
             {
                 imageLists = ImageScrape.RemoveAllDuplicates(imageLists);
             }
 
-            progessBar_dump.Maximum = 0;
-            foreach (var item in imageLists)
+            if (checkBox1.Checked == true)
             {
-                progessBar_dump.Maximum = progessBar_dump.Maximum + item.Count;
-            }
-
-            foreach (var item in imageLists)
-            {
-                foreach (var listItem in item)
+                // 4chan mode downloads the thumbnails and the full image
+                // thumbnails will go in the "dump/4chan_thumb" folder
+                // and the full images go in the "dump/4chan_full
+                foreach (var item in imageLists)
                 {
+                    foreach (var listItem in item)
+                    {
+                        //  s.jpg
 
-                    textBox_log.AppendText(Environment.NewLine + listItem);
-                    textBox_log.Update();
-                    Bitmap tmp = ImageScrape.GetImageFromURL(listItem);
+                        string tfullUrl = listItem;
 
-                    //Grabs extension
-                    string[] parts = listItem.Split('.');
-                    string extension = parts[parts.Length - 1]; //Assumes the last section is the file name
-                    ImageScrape.DumpedList.Add(new DumpImage(tmp, "." + extension));
+                        string[] parts =  tfullUrl.Split(new string[] { "s." }, StringSplitOptions.None);
+                        tfullUrl = parts[0] + ".png";
 
-                    pictureBox_preview.Image = tmp;
-                    pictureBox_preview.Update();
-                    progessBar_dump.Value = progessBar_dump.Value + 1;
-                    progessBar_dump.Update();
-                    label_progress.Text = progessBar_dump.Value + "/" + GetMaxCount(imageLists);
-                    label_progress.Update();
+
+                        textBox_log.AppendText(Environment.NewLine + tfullUrl);
+                        textBox_log.Update();
+                        Bitmap tmp = ImageScrape.GetImageFromURL(tfullUrl);
+
+                        if (tmp.Tag == null)
+                        {
+                            tfullUrl = listItem;
+
+                            parts = tfullUrl.Split(new string[] { "s." }, StringSplitOptions.None);
+                            tfullUrl = parts[0] + ".jpg";
+
+
+                            textBox_log.AppendText(Environment.NewLine + tfullUrl);
+                            textBox_log.Update();
+                            tmp = ImageScrape.GetImageFromURL(tfullUrl);
+                        }
+
+
+                        if (tmp.Width != 1 && tmp.Height != 1)
+                        {
+
+
+                            //Grabs extension
+                            parts = tfullUrl.Split('.');
+                            string extension = parts[parts.Length - 1]; //Assumes the last section is the file name
+                            ImageScrape.DumpedList.Add(new DumpImage(tmp, "." + extension));
+
+                            pictureBox_preview.Image = tmp;
+                            pictureBox_preview.Update();
+                            progessBar_dump.Value = progessBar_dump.Value + 1;
+                            progessBar_dump.Update();
+                            label_progress.Text = progessBar_dump.Value + "/" + GetMaxCount(imageLists);
+                            label_progress.Update();
+                        }
+
+
+
+                    }
                 }
             }
+            else
+            {
+                
+
+                progessBar_dump.Maximum = 0;
+                foreach (var item in imageLists)
+                {
+                    progessBar_dump.Maximum = progessBar_dump.Maximum + item.Count;
+                }
+
+                foreach (var item in imageLists)
+                {
+                    foreach (var listItem in item)
+                    {
+
+                        textBox_log.AppendText(Environment.NewLine + listItem);
+                        textBox_log.Update();
+                        Bitmap tmp = ImageScrape.GetImageFromURL(listItem);
+
+                        //Grabs extension
+                        string[] parts = listItem.Split('.');
+                        string extension = parts[parts.Length - 1]; //Assumes the last section is the file name
+                        ImageScrape.DumpedList.Add(new DumpImage(tmp, "." + extension));
+
+                        pictureBox_preview.Image = tmp;
+                        pictureBox_preview.Update();
+                        progessBar_dump.Value = progessBar_dump.Value + 1;
+                        progessBar_dump.Update();
+                        label_progress.Text = progessBar_dump.Value + "/" + GetMaxCount(imageLists);
+                        label_progress.Update();
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+           
         }
 
         /// <summary>
@@ -117,7 +196,6 @@ namespace _ImageScraper
                 progessBar_dump.Value = 0;
                 textBox_log.Text = "";
                 timer.Restart();
-
                 Dump_Thread();
             }
         }
