@@ -4,6 +4,10 @@ To be exact, you can ask for ANY image format, just add the extension to the fil
 
 ![Screenshot](https://github.com/xSillusx/ImageScraper/blob/master/ImageScraper/ext/Screenshots/screen3.PNG)
 
+# Download:
+https://github.com/xSillusx/ImageScraper/releases
+
+
 # Features:
 - dumping images from websites
 - saving the whole dump or just single images
