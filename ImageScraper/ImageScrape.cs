@@ -126,7 +126,8 @@ namespace _ImageScraper
                 }
                 dumpedCode = code;
                 return code;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 // ugly excpetion until i find a better solution
@@ -181,7 +182,7 @@ namespace _ImageScraper
                     else
                         i = 0;
                 }
-                //Fix added for imageLink not being longer than 4 so the statement below crashed 
+                // Fix added for imageLink not being longer than 4 so the statement below crashed 
                 if (imagelink != "" && imagelink.Length > 4)
                 {
                     if (imagelink[0] != 'h' && imagelink[1] != 't' && imagelink[2] != 't' && imagelink[3] != 'p')
@@ -205,8 +206,15 @@ namespace _ImageScraper
             Console.WriteLine("Called function IsValidUri()");
             try
             {
-                new Uri(uri);
-                return true;
+                if (uri.StartsWith("http://www") || uri.StartsWith("https://www"))
+                {
+                    new Uri(uri);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch
             {
@@ -239,10 +247,7 @@ namespace _ImageScraper
                     WebResponse resp = req.GetResponse();
                     img = new Bitmap(resp.GetResponseStream());
                 }
-                catch(Exception ex)
-                {
-                    // TODO: ugly exception, this stays until i find another solution to this
-                }
+                catch(Exception) { }
                 return img;
             }
             return img;
@@ -279,8 +284,8 @@ namespace _ImageScraper
                 }
             }
 
-            //Checks if there are filters set
-            if (ImageScrape.FilterList.Count <= 0)
+            // Checks if there are filters set
+            if (FilterList.Count <= 0)
             {
                 MessageBox.Show("You need to add an filter first! (ex: .png, .bmp, .gif)");
             }

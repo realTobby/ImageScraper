@@ -12,7 +12,6 @@ using MetroFramework.Forms;
 
 namespace _ImageScraper
 {
-
     public partial class MainFormImageScraper : MetroForm
     {
         public int currentShow = 0;
@@ -40,6 +39,11 @@ namespace _ImageScraper
             webBrowser.ScriptErrorsSuppressed = true; // maybe this will work? No more errors to the user
         }
 
+        private void MainFormImageScraper_Shown(object sender, EventArgs e)
+        {
+            Activate(); // This fixes the problem of the form losing focus
+        }
+
         /// <summary>
         /// Will download all images in the imageLists list and write everything into the logConsoleTextBox
         /// </summary>
@@ -65,12 +69,10 @@ namespace _ImageScraper
                     foreach (var listItem in item)
                     {
                         //  s.jpg
-
                         string tfullUrl = listItem;
 
                         string[] parts =  tfullUrl.Split(new string[] { "s." }, StringSplitOptions.None);
                         tfullUrl = parts[0] + ".png";
-
 
                         textBox_log.AppendText(Environment.NewLine + tfullUrl);
                         textBox_log.Update();
@@ -83,7 +85,6 @@ namespace _ImageScraper
                             parts = tfullUrl.Split(new string[] { "s." }, StringSplitOptions.None);
                             tfullUrl = parts[0] + ".jpg";
 
-
                             textBox_log.AppendText(Environment.NewLine + tfullUrl);
                             textBox_log.Update();
                             tmp = ImageScrape.GetImageFromURL(tfullUrl);
@@ -92,8 +93,6 @@ namespace _ImageScraper
 
                         if (tmp.Width != 1 && tmp.Height != 1)
                         {
-
-
                             //Grabs extension
                             parts = tfullUrl.Split('.');
                             string extension = parts[parts.Length - 1]; //Assumes the last section is the file name
@@ -106,16 +105,11 @@ namespace _ImageScraper
                             label_progress.Text = progessBar_dump.Value + "/" + GetMaxCount(imageLists);
                             label_progress.Update();
                         }
-
-
-
                     }
                 }
             }
             else
             {
-                
-
                 progessBar_dump.Maximum = 0;
                 foreach (var item in imageLists)
                 {
@@ -126,7 +120,6 @@ namespace _ImageScraper
                 {
                     foreach (var listItem in item)
                     {
-
                         textBox_log.AppendText(Environment.NewLine + listItem);
                         textBox_log.Update();
                         Bitmap tmp = ImageScrape.GetImageFromURL(listItem);
@@ -145,19 +138,6 @@ namespace _ImageScraper
                     }
                 }
             }
-
-
-
-
-
-
-
-
-
-
-
-
-           
         }
 
         /// <summary>
@@ -218,7 +198,6 @@ namespace _ImageScraper
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-
             }
         }
 
@@ -345,16 +324,9 @@ namespace _ImageScraper
 
         }
 
-        private void check_duplicates_CheckedChanged(object sender, EventArgs e)
+        private void check_duplicates_CheckStateChanged(object sender, EventArgs e)
         {
-            if (check_duplicates.Checked == true)
-            {
-                check_duplicates.Text = "dump duplicates";
-            }
-            else
-            {
-                check_duplicates.Text = "skip duplicates";
-            }
+            check_duplicates.Text = (check_duplicates.Checked ? "dump" : "skip") + " duplicates";
         }
 
         private void toggle_lightDark_CheckedChanged(object sender, EventArgs e)
