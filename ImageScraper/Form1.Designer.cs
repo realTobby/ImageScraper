@@ -58,7 +58,7 @@ namespace _ImageScraper
             // 
             this.pictureBox_preview.Location = new System.Drawing.Point(350, 52);
             this.pictureBox_preview.Name = "pictureBox_preview";
-            this.pictureBox_preview.Size = new System.Drawing.Size(279, 246);
+            this.pictureBox_preview.Size = new System.Drawing.Size(279, 273);
             this.pictureBox_preview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_preview.TabIndex = 11;
             this.pictureBox_preview.TabStop = false;
@@ -175,6 +175,7 @@ namespace _ImageScraper
             // 
             this.check_duplicates.AutoSize = true;
             this.check_duplicates.BackColor = System.Drawing.Color.Black;
+            this.check_duplicates.Cursor = System.Windows.Forms.Cursors.Default;
             this.check_duplicates.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.check_duplicates.Location = new System.Drawing.Point(225, 179);
             this.check_duplicates.Name = "check_duplicates";
@@ -185,8 +186,7 @@ namespace _ImageScraper
             this.check_duplicates.Theme = MetroFramework.MetroThemeStyle.Light;
             this.check_duplicates.UseStyleColors = true;
             this.check_duplicates.UseVisualStyleBackColor = false;
-            this.check_duplicates.UseWaitCursor = true;
-            this.check_duplicates.CheckedChanged += new System.EventHandler(this.check_duplicates_CheckedChanged);
+            this.check_duplicates.CheckStateChanged += new System.EventHandler(this.check_duplicates_CheckStateChanged);
             // 
             // textBox_log
             // 
@@ -200,7 +200,7 @@ namespace _ImageScraper
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(306, 30);
+            this.metroLabel1.Location = new System.Drawing.Point(350, 30);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(97, 19);
             this.metroLabel1.TabIndex = 37;
@@ -209,7 +209,7 @@ namespace _ImageScraper
             // 
             // button_preview_left
             // 
-            this.button_preview_left.Location = new System.Drawing.Point(350, 304);
+            this.button_preview_left.Location = new System.Drawing.Point(350, 331);
             this.button_preview_left.Name = "button_preview_left";
             this.button_preview_left.Size = new System.Drawing.Size(53, 23);
             this.button_preview_left.TabIndex = 38;
@@ -218,7 +218,7 @@ namespace _ImageScraper
             // 
             // button_preview_clear
             // 
-            this.button_preview_clear.Location = new System.Drawing.Point(407, 304);
+            this.button_preview_clear.Location = new System.Drawing.Point(407, 331);
             this.button_preview_clear.Name = "button_preview_clear";
             this.button_preview_clear.Size = new System.Drawing.Size(51, 23);
             this.button_preview_clear.TabIndex = 39;
@@ -227,7 +227,7 @@ namespace _ImageScraper
             // 
             // button_preview_random
             // 
-            this.button_preview_random.Location = new System.Drawing.Point(464, 304);
+            this.button_preview_random.Location = new System.Drawing.Point(464, 331);
             this.button_preview_random.Name = "button_preview_random";
             this.button_preview_random.Size = new System.Drawing.Size(51, 23);
             this.button_preview_random.TabIndex = 40;
@@ -236,7 +236,7 @@ namespace _ImageScraper
             // 
             // button_preview_save
             // 
-            this.button_preview_save.Location = new System.Drawing.Point(521, 304);
+            this.button_preview_save.Location = new System.Drawing.Point(521, 331);
             this.button_preview_save.Name = "button_preview_save";
             this.button_preview_save.Size = new System.Drawing.Size(49, 23);
             this.button_preview_save.TabIndex = 41;
@@ -245,7 +245,7 @@ namespace _ImageScraper
             // 
             // button_preview_right
             // 
-            this.button_preview_right.Location = new System.Drawing.Point(576, 304);
+            this.button_preview_right.Location = new System.Drawing.Point(576, 331);
             this.button_preview_right.Name = "button_preview_right";
             this.button_preview_right.Size = new System.Drawing.Size(53, 23);
             this.button_preview_right.TabIndex = 42;
@@ -259,14 +259,14 @@ namespace _ImageScraper
             this.toggle_lightDark.Name = "toggle_lightDark";
             this.toggle_lightDark.Size = new System.Drawing.Size(80, 17);
             this.toggle_lightDark.TabIndex = 43;
-            this.toggle_lightDark.Text = "Aus";
+            this.toggle_lightDark.Text = "Off";
             this.toggle_lightDark.UseVisualStyleBackColor = true;
             this.toggle_lightDark.CheckedChanged += new System.EventHandler(this.toggle_lightDark_CheckedChanged);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(350, 334);
+            this.checkBox1.Location = new System.Drawing.Point(350, 360);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(85, 17);
             this.checkBox1.TabIndex = 44;
@@ -308,6 +308,7 @@ namespace _ImageScraper
             this.Style = MetroFramework.MetroColorStyle.Purple;
             this.Text = "Image Scraper";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Shown += new System.EventHandler(this.MainFormImageScraper_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_preview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
