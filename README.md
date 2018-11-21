@@ -19,7 +19,7 @@ https://github.com/xSillusx/ImageScraper/releases
 
 ## Credits:
 
-*AidanFray*, *dabutvin*, *xSillusx*
+*AidanFray*, *dabutvin*, *PsychoPflanze*, *xSillusx*
 
 
 
