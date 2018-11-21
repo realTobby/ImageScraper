@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IScraper.cs" />
-    <Compile Include="Logic\OnlineHTMLScraper.cs" />
+    <Compile Include="Scrapers\OnlineHTMLScraper.cs" />
     <Compile Include="Models\Dump.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

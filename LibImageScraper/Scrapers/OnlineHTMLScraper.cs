@@ -1,14 +1,8 @@
 ﻿using HtmlAgilityPack;
-using LibImageScraper.Interfaces;
-using LibImageScraper.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LibImageScraper.Logic
+namespace LibImageScraper.Scrapers
 {
     public class OnlineHTMLScraper : IScraper
     {
@@ -23,15 +17,15 @@ namespace LibImageScraper.Logic
             SetSource(url);
         }
 
-        
-
         public void SetSource(string source)
         {
             URL = source;
         }
 
-        public void Scrape()
+        public List<Dump> Scrape()
         {
+            urlDump.Clear();
+
             var web = new HtmlWeb();
             System.Net.ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
             var document = web.Load(URL);
@@ -39,7 +33,7 @@ namespace LibImageScraper.Logic
             if (imgs == null)
             {
                 urlDump.Add(new Dump("no images found"));
-                return;
+                return urlDump;
             }
 
             foreach (HtmlNode img in imgs)
@@ -54,10 +48,10 @@ namespace LibImageScraper.Logic
                     urlDump.Add(new Dump( URL + src.Value));
             }
 
-
+            return urlDump;
         }
 
-        public List<Dump> ReturnResult()
+        public List<Dump> ReturnDump()
         {
             return urlDump;
         }
