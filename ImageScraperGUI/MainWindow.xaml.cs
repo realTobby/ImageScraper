@@ -27,7 +27,7 @@ namespace ImageScraperGUI
         public MainWindow()
         {
             InitializeComponent();
-            IMAGESCRAPER = new OnlineHTMLScraper("https://pokemondb.net/pokedex/national");          
+            IMAGESCRAPER = new OnlineHTMLScraper("https://www.google.com");          
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

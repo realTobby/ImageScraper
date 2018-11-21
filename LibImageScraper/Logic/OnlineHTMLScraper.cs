@@ -12,7 +12,7 @@ namespace LibImageScraper.Logic
 {
     public class OnlineHTMLScraper : IScraper
     {
-        private string URL = "www.google.com";
+        private string URL = "https://www.google.com";
 
 
         private List<Dump> urlDump = new List<Dump>();
@@ -45,7 +45,10 @@ namespace LibImageScraper.Logic
                     continue;
                 HtmlAttribute src = img.Attributes["src"];
 
-                urlDump.Add(new Dump(src.Value));
+                if (src.Value.StartsWith("https://"))
+                    urlDump.Add(new Dump(src.Value));
+                else
+                    urlDump.Add(new Dump( URL + src.Value));
             }
 
 
