@@ -23,6 +23,8 @@ namespace LibImageScraper.Logic
             SetSource(url);
         }
 
+        
+
         public void SetSource(string source)
         {
             URL = source;
@@ -31,6 +33,7 @@ namespace LibImageScraper.Logic
         public void Scrape()
         {
             var web = new HtmlWeb();
+            System.Net.ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
             var document = web.Load(URL);
             HtmlNodeCollection imgs = document.DocumentNode.SelectNodes("//img[@src]");
             if (imgs == null)
