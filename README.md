@@ -1,5 +1,5 @@
 # ImageScraper
-ImageScraper is a tool that will look over a given Website and return every Image Url it could find.
+ImageScraper is a tool that will look over a given Website and return every Image Url it can find.
 
 
 # Status:
