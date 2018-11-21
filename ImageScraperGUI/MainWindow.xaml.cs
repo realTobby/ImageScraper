@@ -24,8 +24,7 @@ namespace ImageScraperGUI
             if(!string.IsNullOrEmpty(textBoxUrl.Text))
                 IMAGESCRAPER.SetSource(textBoxUrl.Text);
 
-            IMAGESCRAPER.Scrape();
-            List<Dump> result = IMAGESCRAPER.ReturnDump();
+            List<Dump> result = IMAGESCRAPER.Scrape();
             foreach(var item in result)
             {
                 listBoxResult.Items.Add(item.Path);
