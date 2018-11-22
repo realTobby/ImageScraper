@@ -1,8 +1,10 @@
 ﻿using LibImageScraper;
 using LibImageScraper.Scrapers;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace ImageScraperGUI
 {
@@ -35,9 +37,24 @@ namespace ImageScraperGUI
         {
             if (listBoxResult.SelectedItem != null)
             {
+
                 string clicked = listBoxResult.SelectedItem.ToString();
-                ImagePreview preview = new ImagePreview(clicked);
-                preview.Show();
+                try
+                {
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(clicked, UriKind.Absolute);
+                    bitmap.EndInit();
+
+                    imagePreview.Source = bitmap;
+                }catch(Exception gex)
+                {
+                    Console.WriteLine(gex.Message);
+                    listBoxResult.Items.Clear();
+                }
+                    
+
+                
             }
 
         }

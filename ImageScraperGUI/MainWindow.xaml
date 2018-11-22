@@ -8,11 +8,29 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <StackPanel>
-            <TextBox Name="textBoxUrl"/>
-            <Button Content="Dump Images" Click="Button_Click" />
-            <ListBox Height="200" Name="listBoxResult" SelectionChanged="listBoxResult_SelectionChanged" />
-            <Image Name="imagePreview"/>
-            <Label Content="Click on an entry to view a small Preview." />
+            <TextBox Name="textBoxUrl" Text="(url goes here)"/>
+            <Button Content="Locate Images" Click="Button_Click" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+
+                <ListBox Height="200" Name="listBoxResult" SelectionChanged="listBoxResult_SelectionChanged" Grid.Column="0">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="IsSelected" Value="True"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+                <Image Name="imagePreview" Grid.Column="1" MaxHeight="100" MaxWidth="100"/>
+            </Grid>
+            
+            <Label Content="Hover over an entry to view a small Preview." />
         </StackPanel>
        
 

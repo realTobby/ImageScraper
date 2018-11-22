@@ -6,11 +6,8 @@ namespace LibImageScraper.Scrapers
 {
     public class OnlineHTMLScraper : IScraper
     {
-        private string URL = "https://www.google.com";
-
-
+        private string URL = "";
         private List<Dump> urlDump = new List<Dump>();
-
 
         public OnlineHTMLScraper(string url)
         {
@@ -41,11 +38,13 @@ namespace LibImageScraper.Scrapers
                 if (img.Attributes["src"] == null)
                     continue;
                 HtmlAttribute src = img.Attributes["src"];
-
-                if (src.Value.StartsWith("https://"))
+                if(!string.IsNullOrEmpty(src.Value))
+                {
+                    if (src.Value[0] == '/' && src.Value[1] == '/')
+                        src.Value = "https:" + src.Value;
                     urlDump.Add(new Dump(src.Value));
-                else
-                    urlDump.Add(new Dump( URL + src.Value));
+                }
+                
             }
 
             return urlDump;
