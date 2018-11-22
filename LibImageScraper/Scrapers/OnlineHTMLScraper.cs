@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Net;
 
@@ -38,10 +39,22 @@ namespace LibImageScraper.Scrapers
                 if (img.Attributes["src"] == null)
                     continue;
                 HtmlAttribute src = img.Attributes["src"];
+
+                string baseUrl = new Uri(URL).Host;
+                baseUrl = "https://" + baseUrl;
+
                 if(!string.IsNullOrEmpty(src.Value))
                 {
-                    if (src.Value[0] == '/' && src.Value[1] == '/')
+                    if(src.Value[0] == '/' && src.Value[1] != '/')
+                    {
+                        src.Value = baseUrl + src.Value;
+                    }
+
+                    if(src.Value[0] == '/' && src.Value[1] == '/')
+                    {
                         src.Value = "https:" + src.Value;
+                    }
+
                     urlDump.Add(new Dump(src.Value));
                 }
                 
