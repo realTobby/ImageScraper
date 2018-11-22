@@ -62,7 +62,7 @@ namespace LibImageScraper.Scrapers
             }
 
 
-            return urlDump.ToList().Distinct().ToList();
+            return urlDump.Distinct().ToList();
         }
 
 
