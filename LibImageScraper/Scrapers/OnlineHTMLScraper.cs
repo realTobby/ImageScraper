@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 
 namespace LibImageScraper.Scrapers
@@ -60,8 +61,10 @@ namespace LibImageScraper.Scrapers
                 
             }
 
-            return urlDump;
+
+            return urlDump.ToList().Distinct().ToList();
         }
+
 
         public List<Dump> ReturnDump()
         {
