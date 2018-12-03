@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageScraperGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="ImageScraperGUI" Height="350" Width="525">
     <Grid>
         <StackPanel>
             <TextBox Name="textBoxUrl" Text="(url goes here)"/>

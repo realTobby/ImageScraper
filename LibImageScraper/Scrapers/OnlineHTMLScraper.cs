@@ -66,7 +66,7 @@ namespace LibImageScraper.Scrapers
         }
 
 
-        public List<Dump> ReturnDump()
+        public List<Dump> GetDump()
         {
             return urlDump;
         }
