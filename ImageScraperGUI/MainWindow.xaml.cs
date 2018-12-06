@@ -13,11 +13,11 @@ namespace ImageScraperGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        OnlineHTMLScraper IMAGESCRAPER;
+        IScraper IMAGESCRAPER;
         public MainWindow()
         {
             InitializeComponent();
-            IMAGESCRAPER = new OnlineHTMLScraper("https://www.google.com");          
+            IMAGESCRAPER = new Online4chanScraper("https://www.google.com");          
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
