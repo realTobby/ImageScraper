@@ -58,11 +58,6 @@ namespace LibImageScraper.Scrapers
                         src.Value = "https:" + src.Value;
                     }
 
-                    if(src.Value.Contains("s.jpg"))
-                    {
-                        src.Value = src.Value.Replace("s.jpg", ".jpg");
-                    }
-
                     urlDump.Add(new Dump(src.Value));
                 }
 
