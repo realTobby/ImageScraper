@@ -13,6 +13,7 @@ namespace ImageScraperGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        Random random = new Random();
         IScraper IMAGESCRAPER = null;
         public MainWindow()
         {
@@ -83,5 +84,44 @@ namespace ImageScraperGUI
             }
 
         }
+
+        private void btn_downloadAll_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(var url in listBoxResult.Items)
+            {
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.UriSource = new Uri(url.ToString(), UriKind.Absolute);
+                image.EndInit();
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(image));
+
+                using (var fileStream = new System.IO.FileStream(GenerateRandomFileName() + ".png", System.IO.FileMode.Create))
+                {
+                    encoder.Save(fileStream);
+                }
+            }
+        }
+
+        private string GenerateRandomFileName()
+        {
+            string abc = "abcdefghijklmnopqrstuvwxyz1234567890";
+            string returnName = "is_";
+            int length = random.Next(6,12);
+            for(int i = 0; i < length; i++)
+            {
+                int nxtChar = random.Next(0, abc.Length);
+                if(i == nxtChar)
+                {
+                    returnName = returnName + abc[random.Next(0, abc.Length)].ToString().ToUpper();
+                }else
+                {
+                    returnName = returnName + abc[random.Next(0, abc.Length)].ToString().ToLower();
+                }
+                
+            }
+            return returnName;
+        }
+
     }
 }

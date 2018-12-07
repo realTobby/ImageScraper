@@ -32,6 +32,8 @@
             </Grid>
             
             <Label Content="Hover over an entry to view a small Preview." />
+
+            <Button Name="btn_downloadAll" Content="Download/Save" Click="btn_downloadAll_Click"/>
         </StackPanel>
        
 
