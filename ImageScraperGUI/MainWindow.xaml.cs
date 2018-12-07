@@ -110,15 +110,7 @@ namespace ImageScraperGUI
             int length = random.Next(6,12);
             for(int i = 0; i < length; i++)
             {
-                int nxtChar = random.Next(0, abc.Length);
-                if(i == nxtChar)
-                {
-                    returnName = returnName + abc[random.Next(0, abc.Length)].ToString().ToUpper();
-                }else
-                {
-                    returnName = returnName + abc[random.Next(0, abc.Length)].ToString().ToLower();
-                }
-                
+                returnName = returnName + abc[random.Next(0, abc.Length)].ToString().ToUpper();
             }
             return returnName;
         }
