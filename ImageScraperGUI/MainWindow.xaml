@@ -8,6 +8,7 @@
         Title="ImageScraperGUI" Height="350" Width="525">
     <Grid>
         <StackPanel>
+            <ComboBox Name="scrapeSelect"/>
             <TextBox Name="textBoxUrl" Text="(url goes here)"/>
             <Button Content="Locate Images" Click="Button_Click" />
             <Grid>

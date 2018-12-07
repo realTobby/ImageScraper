@@ -17,20 +17,42 @@ namespace ImageScraperGUI
         public MainWindow()
         {
             InitializeComponent();
-            IMAGESCRAPER = new Online4chanScraper("https://www.google.com");          
+
+
+            LoadScrapers();
+                 
+        }
+
+        private void LoadScrapers()
+        {
+            scrapeSelect.Items.Add("Online4chanScraper");
+            scrapeSelect.Items.Add("OnlineHTMLScraper");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             listBoxResult.Items.Clear();
-            if(!string.IsNullOrEmpty(textBoxUrl.Text))
-                IMAGESCRAPER.SetSource(textBoxUrl.Text);
-
-            List<Dump> result = IMAGESCRAPER.Scrape();
-            foreach(var item in result)
+            if (!string.IsNullOrEmpty(textBoxUrl.Text))
             {
-                listBoxResult.Items.Add(item.Path);
+                switch (scrapeSelect.SelectedItem.ToString())
+                {
+                    case "Online4chanScraper":
+                        IMAGESCRAPER = new Online4chanScraper(textBoxUrl.Text);
+                    break;
+                    case "OnlineHTMLScraper":
+                        IMAGESCRAPER = new OnlineHTMLScraper(textBoxUrl.Text);
+                        break;
+                }
+
+                //IMAGESCRAPER.SetSource(textBoxUrl.Text);
+
+                List<Dump> result = IMAGESCRAPER.Scrape();
+                foreach (var item in result)
+                {
+                    listBoxResult.Items.Add(item.Path);
+                }
             }
+            
         }
 
         private void listBoxResult_SelectionChanged(object sender, SelectionChangedEventArgs e)
