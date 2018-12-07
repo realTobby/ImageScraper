@@ -13,7 +13,7 @@ namespace ImageScraperGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        IScraper IMAGESCRAPER;
+        IScraper IMAGESCRAPER = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -44,13 +44,16 @@ namespace ImageScraperGUI
                         break;
                 }
 
-                //IMAGESCRAPER.SetSource(textBoxUrl.Text);
-
-                List<Dump> result = IMAGESCRAPER.Scrape();
-                foreach (var item in result)
+                if(IMAGESCRAPER != null)
                 {
-                    listBoxResult.Items.Add(item.Path);
+                    List<Dump> result = IMAGESCRAPER.Scrape();
+                    foreach (var item in result)
+                    {
+                        listBoxResult.Items.Add(item.Path);
+                    }
                 }
+
+                
             }
             
         }
